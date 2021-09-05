@@ -1,0 +1,6 @@
+<h1>S3file一覧</h1>
+<%= @s3files.each do |f|%>
+  <div class="container">
+    <%= f.key %>
+  </div>
+<% end %>

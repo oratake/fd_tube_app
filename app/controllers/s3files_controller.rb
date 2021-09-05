@@ -6,6 +6,10 @@ class S3filesController < ApplicationController
     @s3 = get_s3_resource
   end
 
+  def index 
+    @s3files = S3file.all
+  end
+
   def new
     @s3file = S3file.new()
   end
@@ -39,6 +43,18 @@ class S3filesController < ApplicationController
     s3file.save
   
     redirect_to root_path
+  end
+
+  def destroy
+    s3file = S3file.find(params[:id]) #テーブルからデータを取り出す
+    key = s3file.key  # キー（ファイル名）取得 
+  
+    bucket = @s3.bucket(@bucketname) # バケット指定
+    object = bucket.object(key)  # キー指定
+    object.delete  # オブジェクト（ファイル）削除
+  
+    s3file.destroy
+    redirect_to s3files_path, flash: {notice: "ファイル [#{key}] を削除しました"}
   end
 
   private
