@@ -4,7 +4,7 @@ services:
     image: postgres
     environment:
       POSTGRES_HOST_AUTH_METHOD: 'trust'
-      # POSTGRES_PASSWORD: 'postgres' ← envファイルに外出ししても良い
+      # POSTGRES_PASSWORD: 'saigai_share_DB_PW' ← envファイルに外出ししても良い
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
   fire:
