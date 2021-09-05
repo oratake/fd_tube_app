@@ -1,0 +1,26 @@
+<div class="container">
+  <form class="text-center p-5 y-5">
+    <h1 class="h3 mb-3">新規投稿画面</h1>
+    <div class="container">
+      <%= form_with model: @video do |form| %>
+        <div class="form-group pb-3">
+          <%= form.label :title, "動画のタイトル" %>
+          <%= form.text_field :title, class: "form-control" %>
+        </div>
+        <div class="form-group pb-3">
+          <%= form.label :description, "動画の説明" %>
+          <%= form.text_area :description , class: "form-control" %>
+        </div>
+        <div class="form-group pb-3">
+          <%= form.label :text, "備考欄" %>
+          <%= form.text_area :text , class: "form-control" %>
+        </div>
+        <div class="form-group pb-3">
+          <%= form.label :data, "動画を選択" %>
+          <%= form.file_field :data , class: "form-control" %>
+        </div>
+        <%= form.submit "登 録", class: 'btn btn-primary px-3 py-2 rounded' %>
+      <% end %>
+    </div>
+  </form>
+</div>
