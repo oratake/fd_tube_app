@@ -10,6 +10,7 @@ import "channels"
 
 import 'bootstrap';
 import '../stylesheets/application.scss';
+require("video.js")
 
 Rails.start()
 Turbolinks.start()

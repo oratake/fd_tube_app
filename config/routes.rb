@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/top', to: 'home#top'
+
   root to: 'videos#index'
   resources :videos
   resources :s3files

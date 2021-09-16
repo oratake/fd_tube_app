@@ -2,8 +2,20 @@ class S3filesController < ApplicationController
   def initialize
     super
     @region = 'ap-northeast-1'
-    @bucketname = ENV['AWS_S3_BUCKET_NAME'] 
+    @input_bucketname = ENV['AWS_S3_INPUT_BUCKET_NAME'] 
+    @output_bucketname = ENV['AWS_S3_OUTPUT_BUCKET_NAME'] 
     @s3 = get_s3_resource
+
+    ##自分用メモ（後で消すor使う）
+    @s3_input_bucket = @s3.bucket(@input_bucketname)
+    @s3_output_bucket = @s3.bucket(@output_bucketname)
+
+    # クライアントで情報取得
+    @s3_input_objects = @s3.client.list_objects_v2(bucket: @input_bucketname)
+    @s3_hls_objects = @s3.client.list_objects_v2(bucket: @output_bucketname, prefix: "encode/")
+    @s3_thumbnail_objects = @s3.client.list_objects_v2(bucket: @output_bucketname, prefix: "thumbnail/")
+    
+    # binding.pry
   end
 
   def index 
@@ -18,13 +30,15 @@ class S3filesController < ApplicationController
     # ポストされたfileデータを取得
     file = s3file_params[:key]
     filename = file.original_filename
+
+    #filenameの拡張子を.mp4に変換する
     
     #  一時保存用のパスにファイルを保存 
     file_path = "tmp/s3/#{filename}"
     File.binwrite(file_path, file.read)
     
     # バケット名を指定
-    bucket = @s3.bucket(@bucketname)
+    bucket = @s3.bucket(@input_bucketname)
     
     # バケットに保存する際の一意の識別名（ファイル名）を指定 
     key = filename
@@ -42,14 +56,14 @@ class S3filesController < ApplicationController
     s3file = S3file.new(key: key)
     s3file.save
   
-    redirect_to root_path
+    redirect_to s3files_path
   end
 
   def destroy
     s3file = S3file.find(params[:id]) #テーブルからデータを取り出す
     key = s3file.key  # キー（ファイル名）取得 
   
-    bucket = @s3.bucket(@bucketname) # バケット指定
+    bucket = @s3.bucket(@input_bucketname) # バケット指定
     object = bucket.object(key)  # キー指定
     object.delete  # オブジェクト（ファイル）削除
   
