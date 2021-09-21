@@ -1,8 +1,19 @@
+<%# 動画のクリエイトはvideo#newページで %>
 <h1>動画選択画面</h1>
-<%#= form_with model: [:admin, @s3file] do |f|%>
-<%= form_with model: @s3file, new_admin_s3file_path, local: true do |f| %>
-  <div class="form-group">
-    <%= f.file_field :key, class: 'form-control'%>
+<div class="container create_box">
+  <div class="row">
+    <div class="col-md-6 border">
+      <p>S3fileを選択する</p>
+      <%= form_with model: @s3file, new_admin_s3file_path, local: true do |f| %>
+        <div class="form-group">
+          <%= f.file_field :key, class: 'form-control'%>
+        </div>
+        <%= f.submit 'アップロード', class: 'btn btn-primary'%>
+      <% end %>
+    </div>
+    <div class="col-md-6 border">
+      <p>Video情報を入力する</p>
+    </div>
   </div>
-  <%= f.submit 'アップロード', class: 'btn btn-primary'%>
-<% end %>
+
+</div>

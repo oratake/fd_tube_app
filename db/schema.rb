@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_19_203334) do
+ActiveRecord::Schema.define(version: 2021_09_21_145007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2021_09_19_203334) do
     t.string "key"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "video_id"
+    t.index ["video_id"], name: "index_s3files_on_video_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,9 +41,12 @@ ActiveRecord::Schema.define(version: 2021_09_19_203334) do
     t.string "title"
     t.text "description"
     t.text "remarks"
-    t.integer "s3file_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "s3file_id"
+    t.index ["s3file_id"], name: "index_videos_on_s3file_id"
   end
 
+  add_foreign_key "s3files", "videos"
+  add_foreign_key "videos", "s3files"
 end

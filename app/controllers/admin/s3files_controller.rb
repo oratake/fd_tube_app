@@ -1,5 +1,4 @@
 class Admin::S3filesController < ApplicationController
-  
   def initialize
     super
     @region = 'ap-northeast-1'
@@ -57,7 +56,7 @@ class Admin::S3filesController < ApplicationController
     s3file = S3file.new(key: key)
     s3file.save
   
-    redirect_to s3files_path
+    # redirect_to s3files_path
   end
 
   def destroy
