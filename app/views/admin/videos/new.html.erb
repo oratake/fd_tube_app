@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 border">
-      <form class="text-center p-5">
+      <div class="text-center p-5">
         <h1 class="h3 mb-3">S3file情報を入力する</h1>
         <div class="container">
           <div class="form-group pb-3">
@@ -13,10 +13,10 @@
             </div>
           </div>
         </div>
-      </form>
+      </div>
     </div>
     <div class="col-md-6 border">
-      <form class="text-center p-5">
+      <div class="text-center p-5">
         <h1 class="h3 mb-3">Video情報を入力する</h1>
         <div class="container">
           <div class="form-group pb-3">
@@ -32,9 +32,11 @@
             <%= f.text_area :text , class: "form-control" %>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>
-<%= f.submit "登 録", class: 'btn btn-primary px-3 py-2 rounded' %>
+<div class="btn_inner text-center pt-5">
+  <%= f.submit "登 録", class: 'btn btn-outline-secondary px-3 py-2 rounded' %>
+</div>
 <% end %>
