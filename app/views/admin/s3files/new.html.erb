@@ -1,7 +1,8 @@
 <h1>動画選択画面</h1>
-<%= form_with model: @s3file do |f|%>
+<%#= form_with model: [:admin, @s3file] do |f|%>
+<%= form_with model: @s3file, new_admin_s3file_path, local: true do |f| %>
   <div class="form-group">
-    <%= f.file_field :key, class: 'form-control' %>
+    <%= f.file_field :key, class: 'form-control'%>
   </div>
   <%= f.submit 'アップロード', class: 'btn btn-primary'%>
 <% end %>
