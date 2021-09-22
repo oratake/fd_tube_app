@@ -1,15 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: 1
-  path: MyText
   title: MyString
   description: MyText
-  text: MyText
-
-two:
-  user_id: 1
-  path: MyText
-  title: MyString
-  description: MyText
-  text: MyText
+  remarks: MyText
+  s3file: 1
