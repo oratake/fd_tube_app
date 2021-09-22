@@ -16,8 +16,6 @@ class Admin::VideosController < ApplicationController
   def new
     @video = Video.new
     @s3file = S3file.new
-    # ここに@s3fileを初期化する
-
   end
 
   def create
@@ -35,7 +33,16 @@ class Admin::VideosController < ApplicationController
     object.upload_file(file_path, acl:'public-read')
   
     s3file = S3file.new(key: key)
-    s3file.save
+    # s3file.save
+
+    @video = Video.new(params.require(:video).permit(:title, :descirption))
+    
+    if @video.save && s3file.save
+      flash[:notice] = "登録しました"
+      # redirect_to admin_videos_path
+    else
+      render "new"
+    end
   end
 
   def show
