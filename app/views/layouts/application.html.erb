@@ -5,12 +5,30 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
+    <header class="container d-flex justify-content-between">
+      <% if user_signed_in? %>
+        <div class="header_left">
+          <h6> 現在 <%= current_user.name %> さんがログインしています </h6>
+          <h6> メールアドレス： <%= current_user.email %> </h6>
+        </div>
+        <div class="header_right">
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn btn-outline-secondary' %>
+        </div>
+      <% else %>
+        <div class="header_left">
+          <h6> 現在ログインしていません </h6>
+        </div>
+        <div class="header_right">
+          <%= link_to "ログイン", new_user_session_path, class: 'btn btn-outline-secondary' %>
+          <%= link_to "新規登録", new_user_registration_path, class: 'btn btn-outline-secondary' %>
+        </div>
+      <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>

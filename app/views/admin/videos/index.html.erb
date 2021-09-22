@@ -1,0 +1,14 @@
+<div class="container">
+  <h3>動画一覧#admin用ページ</h3>
+  <div class="row">
+    <% @videos.each do |video| %>
+      <div class="col-md-4 border p-3">
+        <div class="h5"><%= "#{video.title}" %></div>
+        <div class="video_container">
+          <%= video.data %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%#= link_to "動画を投稿する", new_admin_video_path, class: 'btn btn-outline-secondary' %>
+</div>

@@ -1,0 +1,21 @@
+<h1>S3file一覧</h1>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">データ名</th>
+        <th scope="col">削除</th>
+      </tr>
+    </thead>
+    <%= @s3files.each_with_index do |f, n|%>
+      <tbody>
+        <tr>
+          <th scope="row"> <%= n + 1 %> </th>
+          <td>  <%= f.key %> </td>
+          <td> <%= link_to '削除', "/s3files/#{f.id}", method: :delete %> </td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+</div>

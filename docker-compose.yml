@@ -4,12 +4,14 @@ services:
     image: postgres
     environment:
       POSTGRES_HOST_AUTH_METHOD: 'trust'
-      # POSTGRES_PASSWORD: 'postgres' ← envファイルに外出ししても良い
+      # POSTGRES_PASSWORD: 'saigai_share_DB_PW' ← envファイルに外出ししても良い
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
   fire:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    stdin_open: true
+    tty: true
     volumes:
       - .:/fire
     ports:
