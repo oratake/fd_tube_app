@@ -1,0 +1,13 @@
+<div class="container">
+  <h3>動画一覧</h3>
+  <div class="row">
+    <% @videos.each do |video| %>
+      <div class="col-md-4 border p-3">
+        <div class="h5"><%= "#{video.title}" %></div>
+        <div class="video_container">
+          <%= video.data %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
