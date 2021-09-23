@@ -3,7 +3,8 @@
   <div class="row">
     <% @s3files.each do |s3file| %>
       <div class="col-md-4 border p-3">
-        <%= link_to videos_path(s3file.id) do %>
+        <%#= link_to videos_path(s3file.id) do %>
+        <%= link_to "/videos/#{s3file.id}", controller: "show" do %>
           <div class="thumbnail_inner">
             <h1 class="py-5 border">サムネ</h1>
             <div class="h5"><%= s3file.video.title %></div>

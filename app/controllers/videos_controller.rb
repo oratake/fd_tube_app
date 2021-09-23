@@ -6,5 +6,7 @@ class VideosController < ApplicationController
   end
 
   def show
+    @s3file = S3file.includes(:video).find(params[:id])
+    # binding.pry
   end
 end

@@ -25,6 +25,11 @@ class Admin::S3filesController < ApplicationController
       file_path = "tmp/s3/#{filename}"
       File.binwrite(file_path, file.read)
       bucket = @s3.bucket(@input_bucketname)
+
+      # ここで新s3カラムにfilenameを登録
+      # S3file.create(file_name: filename)
+      #binging.pry
+
       key = filename
       object = bucket.object(key)
       object.upload_file(file_path, acl:'public-read')
@@ -66,6 +71,5 @@ class Admin::S3filesController < ApplicationController
 
   def s3file_params
     params.require(:s3file).permit(:key, video_attributes: [:title, :description, :remarks])
-    # params.require(:s3file).permit(:key)
   end
 end
