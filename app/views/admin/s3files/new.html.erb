@@ -1,4 +1,4 @@
-<% render "shared/video_error", obj: @s3file %>
+<%= render "shared/video_error", obj: @s3file %>
 <%= form_with model: [:admin, @s3file], url: admin_s3files_path, local: true do |s3file| %>
   <div class="container">
     <div class="row">

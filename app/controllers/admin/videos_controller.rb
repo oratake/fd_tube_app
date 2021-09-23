@@ -45,7 +45,7 @@ class Admin::VideosController < ApplicationController
   
     # アップロードしたファイルのキーをDBに保存 
     s3file = S3file.new(key: key)
-    # s3file.save
+    s3file.save
   
     # redirect_to s3files_path
     
