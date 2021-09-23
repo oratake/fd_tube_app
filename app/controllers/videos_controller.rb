@@ -7,7 +7,6 @@ class VideosController < ApplicationController
 
   def show
     @s3file = S3file.includes(:video).find(params[:id])
-    @s3file_name = @s3file.file_name.split(".")[0]
-    binding.pry
+    @s3file_name = @s3file.file_name.split(".").first
   end
 end
