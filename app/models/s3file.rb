@@ -1,5 +1,5 @@
 class S3file < ApplicationRecord
-  has_one :video
+  has_one :video, dependent: :destroy
   accepts_nested_attributes_for :video
   
   validates_associated :video
