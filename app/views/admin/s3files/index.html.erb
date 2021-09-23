@@ -13,7 +13,7 @@
         <tr>
           <th scope="row"> <%= n + 1 %> </th>
           <td>  <%= f.key %> </td>
-          <td> <%= link_to '削除', "/s3files/#{f.id}", method: :delete %> </td>
+          <td> <%= link_to '削除', "/admin/s3files/#{f.id}", method: :delete %> </td>
         </tr>
       </tbody>
     <% end %>

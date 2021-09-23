@@ -3,12 +3,16 @@
   <div class="row">
     <% @videos.each do |video| %>
       <div class="col-md-4 border p-3">
+        <div class="tumbnail_inner">
+          <p>ここはサムネイルを表示</p>
+        </div>
         <div class="h5"><%= "#{video.title}" %></div>
         <div class="video_container">
-          <%= video.data %>
+           <p><%= video.discrption %></p> 
+           <p><%= video.remarks %></p> 
         </div>
       </div>
     <% end %>
   </div>
-  <%= link_to "動画を投稿する", new_admin_video_path, class: 'btn btn-outline-secondary' %>
+  <%= link_to "動画を投稿する", new_admin_s3file_path, class: 'btn btn-outline-secondary' %>
 </div>
