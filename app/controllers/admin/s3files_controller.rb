@@ -28,9 +28,9 @@ class Admin::S3filesController < ApplicationController
       key = filename
       object = bucket.object(key)
       object.upload_file(file_path, acl:'public-read')
+
+      redirect_to action: "index"
     else
-      # binding.pry
-      
       flash[:alert] = "失敗っす"
       render "new"
     end
