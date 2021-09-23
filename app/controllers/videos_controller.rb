@@ -2,7 +2,7 @@ class VideosController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @videos = Video.all
+    @s3files = S3file.includes(:video).all
   end
 
   def show
