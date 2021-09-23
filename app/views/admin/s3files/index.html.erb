@@ -19,7 +19,7 @@
           <td>  <%#= s3file.video.title %> </td>
           <td>  <%#= s3file.video.discription %> </td>
           <td>  <%#= s3file.video.remarks %> </td>
-          <td> <%= link_to '削除', "/admin/s3files/#{f.id}", method: :delete %> </td>
+          <td> <%= link_to '削除', "/admin/s3files/#{s3file.id}", method: :delete %> </td>
         </tr>
       </tbody>
     <% end %>
