@@ -3,7 +3,7 @@
 <%= javascript_pack_tag 'hello_vue' %>
 <p>Video-jsのテスト</p>
 <video-js controls autoplay preload id=player-id class="vjs-theme-sea" data-setup='{"liveui": true,"fluid": true}'>
-  <source src="https://dbttkdv05ce2y.cloudfront.net/encode/<%="IMG_0245IMG"%>_hls.m3u8" type="application/x-mpegURL">
+  <source src="https://dbttkdv05ce2y.cloudfront.net/encode/<%= @s3file_name%>_hls.m3u8" type="application/x-mpegURL">
 </video-js>
 <%# <video-js controls autoplay preload id=player-id class="vjs-theme-sea" data-setup='{"liveui": true,"fluid": true}'>
   <source src="https://dbttkdv05ce2y.cloudfront.net/encode/IMG_0245IMG_hls.m3u8" type="application/x-mpegURL">

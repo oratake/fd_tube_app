@@ -33,7 +33,6 @@ class Admin::S3filesController < ApplicationController
       flash[:alert] = "失敗っす"
       render "new"
     end
-    binding.pry
   end
 
   def show
