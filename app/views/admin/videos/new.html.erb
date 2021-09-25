@@ -1,3 +1,5 @@
+<%# ここは今んとこ使わん。s3#newページで一括登録する%>
+<% render "shared/video_error", obj: @video %>
 <%= form_with model: [:admin, @video], local: true do |f| %>
 <div class="container">
   <div class="row">

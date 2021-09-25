@@ -1,19 +1,25 @@
-<h1>S3file一覧</h1>
+<h1>投稿した動画一覧</h1>
 <div class="container">
   <table class="table">
     <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">データ名</th>
+        <th scope="col">タイトル</th>
+        <th scope="col">説明</th>
+        <th scope="col">備考</th>
         <th scope="col">削除</th>
       </tr>
     </thead>
-    <%= @s3files.each_with_index do |f, n|%>
+    <%= @s3files.each_with_index do |s3file, n|%>
       <tbody>
         <tr>
           <th scope="row"> <%= n + 1 %> </th>
-          <td>  <%= f.key %> </td>
-          <td> <%= link_to '削除', "/s3files/#{f.id}", method: :delete %> </td>
+          <td>  <%= s3file.key %> </td>
+          <td>  <%#= s3file.video.title %> </td>
+          <td>  <%#= s3file.video.discription %> </td>
+          <td>  <%#= s3file.video.remarks %> </td>
+          <td> <%= link_to '削除', "/admin/s3files/#{s3file.id}", method: :delete %> </td>
         </tr>
       </tbody>
     <% end %>
