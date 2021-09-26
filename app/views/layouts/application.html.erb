@@ -10,7 +10,7 @@
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <header class="header">
+    <header class="header border-bottom">
       <% if user_signed_in? %>
         <div class="header_left">
           <h6> 現在 <%= current_user.name %> さんがログインしています </h6>

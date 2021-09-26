@@ -1,15 +1,15 @@
 <div class="session-container row">
   <div class="col-md-5">
-    <div class="session-inner">
+    <div class="session-inner border">
       <h2 class="session-title">ログイン</h2>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-field">
         <%= f.label :email, "メールアドレス" %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-field-box" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-box-width" %>
       </div>
       <div class="form-field">
         <%= f.label :password, "パスワード" %><br />
-        <%= f.password_field :password, autocomplete: "current-password", class: "form-field-box" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control form-box-width" %>
       </div>
       <div class="session-bottom">
         <div class="form-actions">
