@@ -47,11 +47,9 @@ class Admin::VideosController < ApplicationController
     s3file = S3file.new(key: key)
     s3file.save
   
-    # redirect_to s3files_path
-    
     if @video.save && @s3file.save
       flash[:notice] = "登録しました"
-      # redirect_to admin_videos_path
+      redirect_to admin_videos_path
     else
       flash[:alert] = "失敗っす"
       render "new"

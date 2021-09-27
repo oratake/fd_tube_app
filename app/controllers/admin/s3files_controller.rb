@@ -28,7 +28,6 @@ class Admin::S3filesController < ApplicationController
       object = bucket.object(key)
       object.upload_file(file_path, acl:'public-read')
 
-      redirect_to action: "index"
     else
       flash[:alert] = "失敗っす"
       render "new"
