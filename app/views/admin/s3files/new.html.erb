@@ -1,19 +1,43 @@
-<%# 動画のクリエイトはvideo#newページで %>
-<h1>動画選択画面</h1>
-<div class="container create_box">
-  <div class="row">
-    <div class="col-md-6 border">
-      <p>S3fileを選択する</p>
-      <%= form_with model: @s3file, new_admin_s3file_path, local: true do |f| %>
-        <div class="form-group">
-          <%= f.file_field :key, class: 'form-control'%>
+<%= render "shared/video_error", obj: @s3file %>
+<%= form_with model: [:admin, @s3file], url: admin_s3files_path, local: true do |s3file| %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 session-inner border">
+        <div class="text-center p-5">
+          <h2 class="h3 mb-3">動画のファイルを選択する</h2>
+          <div class="container">
+            <div class="form-group pb-3">
+              <div class="form-group">
+                <%= s3file.file_field :key, class: 'form-control'%>
+              </div>
+            </div>
+          </div>
         </div>
-        <%= f.submit 'アップロード', class: 'btn btn-primary'%>
-      <% end %>
-    </div>
-    <div class="col-md-6 border">
-      <p>Video情報を入力する</p>
+      </div>
+      <div class="col-md-6 session-inner border">
+        <div class="text-center p-5">
+          <h2 class="h3 mb-3">Video情報を入力する</h2>
+          <div class="container">
+            <%= s3file.fields_for :video, @s3file.build_video do |video| %>
+              <div class="form-group pb-3">
+                <%= video.label :title, "動画のタイトル" %>
+                <%= video.text_field :title, class: "form-control" %>
+              </div>
+              <div class="form-group pb-3">
+                <%= video.label :description, "動画の説明" %>
+                <%= video.text_area :description , class: "form-control" %>
+              </div>
+              <div class="form-group pb-3">
+                <%= video.label :remarks, "備考欄" %>
+                <%= video.text_area :remarks , class: "form-control" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
-</div>
+  <div class="btn_inner text-center pt-5">
+    <%= s3file.submit "登 録", class: 'btn btn-outline-secondary px-3 py-2 rounded' %>
+  </div>
+<% end %>
