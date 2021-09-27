@@ -1,0 +1,38 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 14px;
+  align-items: center;
+}
+
+.header-logo {
+  color: #ffffff;
+  font-size: 36px;
+  text-shadow: 1px 2px 3px #808080; 
+}
+
+.header-icon-inner {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	background: #a0a0a0;
+  color: white;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	-o-border-radius: 50px;
+	-ms-border-radius: 50px; 
+	border-radius: 50px;
+
+  & .header-icon-name {
+    color: white;
+    font-weight: 600;
+    padding-top: 12px;
+  }
+
+  & .btn {
+    box-shadow: none !important;
+  }
+}

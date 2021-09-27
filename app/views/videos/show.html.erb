@@ -1,14 +1,25 @@
-<h1>動画詳細ページ</h1>
-<div class="container">
+<div class="container-fluid video–container">
   <div class="row">
-    <div class="col lign-self-center">
-      <p>Video-jsのテスト</p>
-      <div class="video-js_inner">
+    <div class="video-box_show col-md-9">
+      <div class="video-inner_show">
         <video-js controls id=player-id class="vjs-theme-sea" data-setup='{"liveui": true,"fluid": true}'>
           <source src="https://dbttkdv05ce2y.cloudfront.net/encode/<%= @s3file_name%>_hls.m3u8"
             type="application/x-mpegURL">
         </video-js>
       </div>
+      <div class="video-info-inner_show">
+        <div class="video-info-title border-bottom">
+          <h4><%= @s3file.video.title %></h4>
+          <div class="video-info-update_at"><%= @s3file.video.updated_at.to_s(:datetime_jp) %></div>
+        </div>
+        <div class="video-info">▼動画の説明</div>
+        <div class="video-info-description"><%= @s3file.video.description %></div>
+      </div>
     </div>
+    <%#=  
+    <div class="user-comment-box col-md-3 bg-light">
+      <p>コメントボックス</p>
+    </div>
+     %>
   </div>
 </div>

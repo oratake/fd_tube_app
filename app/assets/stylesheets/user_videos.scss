@@ -1,0 +1,27 @@
+// Place all the styles related to the videos controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+// .video-js {
+// }
+.video–container {
+  background-color: #f2f0f0;
+  height: 100vh;
+  padding: 10px;
+}
+
+.thumbnail-innner {
+  height: 200px;
+
+  & img {
+    display: block;
+    height: 200px;
+    object-fit: fill;
+    width: 100%;
+  }
+}
+
+.video-info-title {
+  padding: 10px 0;
+  margin: 10px 0;
+}

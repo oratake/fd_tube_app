@@ -1,25 +1,35 @@
-<h1>投稿した動画一覧</h1>
-<div class="container">
-  <table class="table">
+<div class="container-fluid video–container">
+  <h4>投稿した動画一覧</h4>
+  <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">データ名</th>
-        <th scope="col">タイトル</th>
-        <th scope="col">説明</th>
-        <th scope="col">備考</th>
+        <th scope="col">動画</th>
+        <th scope="col"></th>
+        <th scope="col">投稿日</th>
+        <th scope="col">コメント数</th>
+        <th scope="col">編集</th>
         <th scope="col">削除</th>
       </tr>
     </thead>
-    <%= @s3files.each_with_index do |s3file, n|%>
+    <% @s3files.each_with_index do |s3file, n|%>
       <tbody>
         <tr>
-          <th scope="row"> <%= n + 1 %> </th>
-          <td>  <%= s3file.key %> </td>
-          <td>  <%#= s3file.video.title %> </td>
-          <td>  <%#= s3file.video.discription %> </td>
-          <td>  <%#= s3file.video.remarks %> </td>
-          <td> <%= link_to '削除', "/admin/s3files/#{s3file.id}", method: :delete %> </td>
+          <th scope="row"> 
+            <div class="admin-video-info">
+              <div class="admin-thumbnail-innner">
+                <%= image_tag "https://saigai-share-encode-videos.s3.ap-northeast-1.amazonaws.com/thumbnail/#{s3file.file_name.split(".").first}_pic.0000000.jpg" %>
+              </div>
+              <div class="admin-videoinfo-inner">
+                <h6><%= s3file.video.title %></h6>
+                <p><%= s3file.video.description %></p>
+              </div>
+            </div>
+          </th>
+          <td> </td>
+          <td><%= s3file.video.updated_at.to_s(:datetime_jp) %></td>
+          <td><%= "0回" %></td>
+          <td><%= link_to '編集', "/admin/s3files/edit" %></td>
+          <td><%= link_to '削除', "/admin/s3files/#{s3file.id}", method: :delete %></td>
         </tr>
       </tbody>
     <% end %>
