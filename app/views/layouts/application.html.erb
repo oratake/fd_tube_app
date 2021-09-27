@@ -10,25 +10,7 @@
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <header class="header border-bottom">
-      <% if user_signed_in? %>
-        <div class="header_left">
-          <h6> 現在 <%= current_user.user_name %> さんがログインしています </h6>
-          <h6> メールアドレス： <%= current_user.email %> </h6>
-        </div>
-        <div class="header_right">
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn btn-outline-secondary' %>
-        </div>
-      <% else %>
-        <div class="header_left">
-          <h6> 現在ログインしていません </h6>
-        </div>
-        <div class="header_right">
-          <%= link_to "ログイン", new_user_session_path, class: 'btn btn-outline-secondary' %>
-          <%= link_to "新規登録", new_user_registration_path, class: 'btn btn-outline-secondary' %>
-        </div>
-      <% end %>
-    </header>
+    <%= render "shared/main_header" %>
     <div class="notice"> <%= flash[:notice] %> </div>
     <div class="alert"> <%= flash[:alert] %> </div>
     <%= yield %>

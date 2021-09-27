@@ -1,0 +1,28 @@
+<header class="header border-bottom">
+  <div class="header-left">
+    <div class="header-logo_inner">
+      <h1><%= link_to "FD-MOVIES", root_path, class: "header-logo" %></h1>
+    </div>
+  </div>
+  <% if user_signed_in? %>
+  <div class="header-right">
+    <div class="header-icon-inner">
+      <div class="dropdown">
+        <button class="btn header-icon-name" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <%= current_user.first_name %>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+          <li><a class="dropdown-item" href="#">アカウント確認</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <% else %>
+  <div class="header-right">
+    <%= link_to "ログイン", new_user_session_path, class: 'btn btn-outline-secondary' %>
+    <%= link_to "新規登録", new_user_registration_path, class: 'btn btn-outline-secondary' %>
+  </div>
+  <% end %>
+</header>
