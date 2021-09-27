@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if current_user.admin?
-      admin_videos_path
+      admin_s3files_path
     else
       videos_path
     end
