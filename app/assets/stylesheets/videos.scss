@@ -4,3 +4,14 @@
 
 // .video-js {
 // }
+
+.thumbnail-innner {
+  height: 200px;
+
+  & img {
+    display: block;
+    height: 200px;
+    object-fit: fill;
+    width: 100%;
+  }
+}

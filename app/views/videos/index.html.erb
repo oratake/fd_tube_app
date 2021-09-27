@@ -1,19 +1,25 @@
-<div class="container">
-  <h3>動画一覧</h3>
+<div class="container video–container">
   <div class="row">
     <% @s3files.each do |s3file| %>
-    <div class="col-md-4 border p-3">
-      <%= link_to "/videos/#{s3file.id}", controller: "show" do %>
-        <div class="thumbnail_inner">
-          <%= image_tag "https://saigai-share-encode-videos.s3.ap-northeast-1.amazonaws.com/thumbnail/#{s3file.file_name.split(".").first}_pic.0000000.jpg", class: "img-fluid" %>
-          <div class="h5"><%= s3file.video.title %></div>
-          <div class="video_container">
-            <p>説明：<%= s3file.video.description %></p>
-            <p>備考：<%= s3file.video.remarks %></p>
+      <div class="video-box col-md-4 p-3">
+        <%= link_to "/videos/#{s3file.id}", controller: "show" do %>
+          <div class="thumbnail-innner">
+            <%= image_tag "https://saigai-share-encode-videos.s3.ap-northeast-1.amazonaws.com/thumbnail/#{s3file.file_name.split(".").first}_pic.0000000.jpg" %>
           </div>
+          <div class="row">
+            <div class="video-icon-inner col-2 pt-2">
+              <div class="header-icon-inner">
+               <p><%#= first_name %></p>
+              </div>
+            </div>
+            <div class="video-info-inner col-10 pt-2">
+              <h4><%= s3file.video.title %></h4>
+              <div><%= s3file.video.description %></div>
+              <div><%= s3file.video.updated_at %></div>
+            </div>
         </div>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>
