@@ -13,7 +13,7 @@
     <header class="container d-flex justify-content-between">
       <% if user_signed_in? %>
         <div class="header_left">
-          <h6> 現在 <%= current_user.name %> さんがログインしています </h6>
+          <h6> 現在 <%= current_user.user_name %> さんがログインしています </h6>
           <h6> メールアドレス： <%= current_user.email %> </h6>
         </div>
         <div class="header_right">
