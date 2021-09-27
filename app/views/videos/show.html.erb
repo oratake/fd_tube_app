@@ -10,7 +10,7 @@
       <div class="video-info-inner_show">
         <div class="video-info-title border-bottom">
           <h4><%= @s3file.video.title %></h4>
-          <div class="video-info-update_at"><%= @s3file.video.updated_at %></div>
+          <div class="video-info-update_at"><%= @s3file.video.updated_at.to_s(:datetime_jp) %></div>
         </div>
         <div class="video-info">▼動画の説明</div>
         <div class="video-info-description"><%= @s3file.video.description %></div>
