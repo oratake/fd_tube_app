@@ -7,6 +7,7 @@
 .video–container {
   background-color: #f2f0f0;
   height: 100vh;
+  padding: 10px;
 }
 
 .thumbnail-innner {
@@ -18,4 +19,9 @@
     object-fit: fill;
     width: 100%;
   }
+}
+
+.video-info-title {
+  padding: 10px 0;
+  margin: 10px 0;
 }
