@@ -10,13 +10,10 @@ class Admin::VideosController < ApplicationController
   end
 
   def index
-    @videos = Video.all
   end
 
   def new
     @video = Video.new
-    # @s3file = S3file.new()
-    # @video.build_s3file
   end
 
   def create
@@ -59,7 +56,10 @@ class Admin::VideosController < ApplicationController
   # def show
   # end
 
-  def exit
+  def edit
+    @video = Video.find(params[:id])
+    
+    # binding.pry
   end
 
   def update

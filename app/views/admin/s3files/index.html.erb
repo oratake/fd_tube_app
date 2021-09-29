@@ -28,7 +28,8 @@
           <td> </td>
           <td><%= s3file.video.updated_at.to_s(:datetime_jp) %></td>
           <td><%= "0回" %></td>
-          <td><%= link_to '編集', "/admin/s3files/edit" %></td>
+          <td><%#= link_to '編集', "/admin/videos/#{s3file.video.id}/edit", controller: "admin/videos" action: "edit" %></td>
+          <td><%= link_to '編集',  edit_admin_video_path(s3file.video.id) %></td>
           <td><%= link_to '削除', "/admin/s3files/#{s3file.id}", method: :delete %></td>
         </tr>
       </tbody>

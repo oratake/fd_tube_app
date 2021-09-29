@@ -1,0 +1,18 @@
+<div class="container-fluid video–container">
+  <div class="row">
+    <div class="video-box_show col-md-9">
+      <div class="video-inner_show">
+        <div class="">ここはサムネイル</div>
+        </video-js>
+      </div>
+      <div class="video-info-inner_show">
+        <div class="video-info-title border-bottom">
+          <h4><%= @video.title %></h4>
+          <div class="video-info-update_at"><%= @video.updated_at.to_s(:datetime_jp) %></div>
+        </div>
+        <div class="video-info">▼動画の説明</div>
+        <div class="video-info-description"><%= @video.description %></div>
+      </div>
+    </div>
+  </div>
+</div>
