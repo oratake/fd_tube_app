@@ -15,8 +15,8 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <li><a class="dropdown-item" href="#">アカウント確認</a></li>
+          <li><%= link_to "ユーザー管理画面へ", users_index_path, class: "dropdown-item" %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
-          <li><%= link_to "ユーザー管理画面へ", class: "dropdown-item" %></li>
         </ul>
 
         <%#= 一般ユーザーの場合 %>
