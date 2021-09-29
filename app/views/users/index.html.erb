@@ -3,18 +3,17 @@
   <table class="table table-hover">
     <thead>
       <tr>
+        <th scope="col">#</th>
         <th scope="col">名前</th>
         <th scope="col">ユーザー名</th>
-        <th scope="col">投稿日</th>
-        <th scope="col">編集</th>
+        <th scope="col">登録日</th>
         <th scope="col">削除</th>
       </tr>
     </thead>
     <% @users.each_with_index do |user, n|%>
       <tbody>
         <tr>
-          <th scope="row"> 
-          </th>
+          <th scope="row"><%= n + 1 %></th>
           <td><%= user.first_name %>&nbsp;<%= user.last_name %></td>
           <td><%= user.user_name %></td>
           <td><%= user.created_at.to_s(:datetime_jp) %></td>
