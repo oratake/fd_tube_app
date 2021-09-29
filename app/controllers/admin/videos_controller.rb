@@ -58,6 +58,7 @@ class Admin::VideosController < ApplicationController
 
   def edit
     @video = Video.find(params[:id])
+    @video_name = @video.s3file.file_name
     
     # binding.pry
   end
