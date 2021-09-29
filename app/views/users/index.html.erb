@@ -4,6 +4,7 @@
     <thead>
       <tr>
         <th scope="col">#</th>
+        <th scope="col">管理者</th>
         <th scope="col">名前</th>
         <th scope="col">ユーザー名</th>
         <th scope="col">登録日</th>
@@ -14,12 +15,17 @@
       <tbody>
         <tr>
           <th scope="row"><%= n + 1 %></th>
+          <td>
+            <%= user.admin == true ? "○" : " "  %>
+          </td>
           <td><%= user.first_name %>&nbsp;<%= user.last_name %></td>
           <td><%= user.user_name %></td>
           <td><%= user.created_at.to_s(:datetime_jp) %></td>
-          <td><%= link_to '削除' "/", method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+          <td><%= link_to '削除', users_path(id: user.id), controller: "users/registrations", action: "destroy", method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
         </tr>
       </tbody>
     <% end %>
   </table>
 </div>
+
+          <td><%#= link_to '削除' "/", method: :delete, data: { confirm: "本当に削除しますか？" } %></td>

@@ -26,18 +26,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def destroy
     user = User.find(params[:id])
+    
     soft_delete(user)
-    set_flash_message :notice, :destroyed
+    flash[:alert] = "ユーザーを削除しました"
     yield resource if block_given?
-    respond_with_navigational { redirect_to root_path }
+    respond_with_navigational { redirect_to users_path }
   end
 
   private
 
   def soft_delete(user)
     deleted_email = user.email + '_deleted_' + I18n.l(Time.current, format: :delete_flag)
-    user.assign_attributes(email: deleted_email, deleted_at: Time.current)
-    user.skip_reconfirmation!
+    user.assign_attributes(email: deleted_email, delete_at: Time.current)
+    user.skip_email_changed_notification!
     user.save!
   end
 

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :if_not_admin
 
   def index
-    @users = User.all
+    @users = User.where(delete_at: nil)
   end
 
   def show
