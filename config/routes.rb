@@ -14,7 +14,11 @@ Rails.application.routes.draw do
   resources :videos, only: [:index, :show]
   
   namespace :admin do
-    resources :videos, only: [:index, :new, :create, :show,  :edit, :destroy]
+    get "/videos/:id", to: "videos#edit"
+    patch "/videos/:id", to: "videos#update"
+    
+    resources :videos, only: [:index, :new, :create, :show, :destroy]
+
     resources :s3files
   end
   

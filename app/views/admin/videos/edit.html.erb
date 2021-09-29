@@ -6,7 +6,7 @@
         <div class="thumbnail-innner">
           <%= image_tag "https://saigai-share-encode-videos.s3.ap-northeast-1.amazonaws.com/thumbnail/#{@video_name.split(".").first}_pic.0000000.jpg" %>
         </div>
-        <%= form_with model: @video do |video| %>
+        <%= form_with model: [:admin, @video], local: true do |video| %>
         <div class="form-group pb-3">
           <%= video.label :title, "動画のタイトル" %>
           <%= video.text_field :title, class: "form-control" %>
@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="form-actions">
-        <%= video.submit "ログイン", class: 'btn btn-outline-secondary' %>
+        <%= video.submit "更新する", class: 'btn btn-outline-secondary' %>
       </div>
       <% end %>
     </div>
