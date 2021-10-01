@@ -5,7 +5,6 @@ Rails.application.routes.draw do
    }
   devise_scope :users do
     delete "users/:id", to: "users/registrations#destroy"
-
   end
 
   resources :videos, only: [:index, :show]
