@@ -8,18 +8,18 @@
   <div class="header-right">
     <div class="header-icon-inner">
       <div class="dropdown">
-        <%#= 管理者の場合 %>
+        <%#= 一般ユーザーの場合 %>    <%#= 管理者の場合 %> 
         <button class="btn header-icon-name" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
           aria-expanded="false">
           <%= current_user.first_name %>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li><a class="dropdown-item" href="#">アカウント確認</a></li>
+          <li><%= link_to "アカウント確認", "/users/#{current_user.id}", class: "dropdown-item" %></li>
+          <li><%= link_to "アカウント変更", edit_user_registration_path, class: "dropdown-item" %></li>
           <li><%= link_to "ユーザー管理画面へ", users_path, class: "dropdown-item" %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
         </ul>
 
-        <%#= 一般ユーザーの場合 %>
       </div>
     </div>
   </div>

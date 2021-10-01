@@ -1,12 +1,23 @@
 class UsersController < ApplicationController
-  before_action :if_not_admin
+  before_action :if_not_admin, only: [:index]
 
   def index
     @users = User.where(delete_at: nil)
   end
 
   def show
+    @user = current_user
   end
+
+#   def edit
+#     @user = current_user
+#   end
+  
+#   def update
+#     @user = current_user
+#     @user.update(user_params)
+#     redirect_to videos_path
+#   end
 end
 
 private

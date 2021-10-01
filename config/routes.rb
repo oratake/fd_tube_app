@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  root to: "home#top"
+  # root to: "home#top"
+  root to: "videos#index"
   devise_for :users, :controllers => {
     :registrations => 'users/registrations'
    }
   devise_scope :users do
     delete "users/:id", to: "users/registrations#destroy"
-
   end
 
   resources :videos, only: [:index, :show]
