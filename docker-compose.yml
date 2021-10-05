@@ -30,17 +30,3 @@ volumes:
     tmp-data:
     log-data:
     db-data:
-
-
-
-  # web:
-  #   build: .
-  #   command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-  #   stdin_open: true
-  #   tty: true
-  #   volumes:
-  #     - .:/fire
-  #   ports:
-  #     - "3000:3000"
-  #   depends_on:
-  #     - db

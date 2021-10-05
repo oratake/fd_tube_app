@@ -28,6 +28,7 @@ development:
 
 test:
   <<: *default
+  host: <%= ENV['DB_HOST'] || 'db' %>
   database: fire_test
 
 production:
