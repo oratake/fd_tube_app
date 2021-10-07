@@ -11,12 +11,12 @@ RUN curl -sL https://deb.nodesource.com/setup_7.x | bash - && \
 apt-get install nodejs
 
 
-RUN mkdir /fire
-WORKDIR /fire
-COPY Gemfile /fire/Gemfile
-COPY Gemfile.lock /fire/Gemfile.lock
+RUN mkdir /fd_tube_app
+WORKDIR /fd_tube_app
+COPY Gemfile /fd_tube_app/Gemfile
+COPY Gemfile.lock /fd_tube_app/Gemfile.lock
 RUN bundle install
-COPY . /fire
+COPY . /fd_tube_app
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
