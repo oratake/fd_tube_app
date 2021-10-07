@@ -24,12 +24,12 @@ default: &default
 
 development:
   <<: *default
-  database: fire_development
+  database: fd_tube_app_development
 
 test:
   <<: *default
   host: <%= ENV['DB_HOST'] || 'db' %>
-  database: fire_test
+  database: fd_tube_app_test
 
 production:
   <<: *default

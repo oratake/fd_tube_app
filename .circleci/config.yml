@@ -24,7 +24,7 @@ jobs:
         name: "db"
         environment:
           POSTGRES_USER: postgres
-          POSTGRES_DB: fire_test
+          POSTGRES_DB: fd_tube_app_test
           POSTGRES_PASSWORD: <%= ENV['DB_PASSWORD'] %>
     environment:
       BUNDLE_JOBS: "4"

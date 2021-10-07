@@ -11,18 +11,18 @@ services:
     build: .
     command: bundle exec puma -C config/puma.rb -e production
     volumes:
-      - .:/fire
-      - public-data:/fire/public
-      - tmp-data:/fire/tmp
-      - log-data:/fire/log
+      - .:/fd_tube_app
+      - public-data:/fd_tube_app/public
+      - tmp-data:/fd_tube_app/tmp
+      - log-data:/fd_tube_app/log
     # depends_on:
     #   - db
   web:
     build:
       context: containers/nginx
     volumes:
-      - public-data:/fire/public
-      - tmp-data:/fire/tmp
+      - public-data:/fd_tube_app/public
+      - tmp-data:/fd_tube_app/tmp
     ports:
       - 80:80
 volumes:
