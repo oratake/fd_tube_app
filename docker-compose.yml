@@ -1,15 +1,15 @@
 version: '3'
 services:
-  db:
-    image: postgres
-    environment:
-      POSTGRES_HOST_AUTH_METHOD: 'trust'
-      POSTGRES_PASSWORD: <%= ENV['DB_PASSWORD'] %> 
-    volumes:
-      - ./tmp/db:/var/lib/postgresql/data
+  # db:
+  #   image: postgres
+  #   environment:
+  #     POSTGRES_HOST_AUTH_METHOD: 'trust'
+  #     POSTGRES_PASSWORD: <%= ENV['DB_PASSWORD'] %> 
+  #   volumes:
+  #     - ./tmp/db:/var/lib/postgresql/data
   app:
     build: .
-    command: bundle exec puma -C config/puma.rb
+    command: bundle exec puma -C config/puma.rb -e production
     volumes:
       - .:/fire
       - public-data:/fire/public
@@ -29,4 +29,4 @@ volumes:
     public-data:
     tmp-data:
     log-data:
-    db-data:
+    # db-data:
