@@ -3,7 +3,7 @@ lock "~> 3.16.0"
 
 set :application, "fd_tube_app"
 set :repo_url, "git@github.com:kenkennfree/fd_tube_app.git"
-set :rbenv_ruby, File.read('.ruby-version').strip
+set :rbenv_ruby, "2.7.3"
 set :branch, ENV['BRANCH'] || "master"
 
 # Nginxの設定ファイル名と置き場所を修正

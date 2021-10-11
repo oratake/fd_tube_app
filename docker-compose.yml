@@ -15,6 +15,8 @@ services:
       - public-data:/fd_tube_app/public
       - tmp-data:/fd_tube_app/tmp
       - log-data:/fd_tube_app/log
+      -  ~/.ssh:/root/.ssh
+
     # depends_on:
     #   - db
   web:
