@@ -1,20 +1,15 @@
 version: '3'
 services:
-  # db:
-  #   image: postgres
-  #   environment:
-  #     POSTGRES_HOST_AUTH_METHOD: 'trust'
-  #     POSTGRES_PASSWORD: <%= ENV['DB_PASSWORD'] %> 
-  #   volumes:
-  #     - ./tmp/db:/var/lib/postgresql/data
   app:
     build: .
     command: bundle exec puma -C config/puma.rb -e production
     volumes:
-      - .:/fd_tube_app
-      - public-data:/fd_tube_app/public
-      - tmp-data:/fd_tube_app/tmp
-      - log-data:/fd_tube_app/log
+      # - .:/fd_tube_app
+      # - public-data:/fd_tube_app/public
+      # - tmp-data:/fd_tube_app/tmp
+      # - log-data:/fd_tube_app/log
+
+      - /app/log # persist logs
       -  ~/.ssh:/root/.ssh
 
     # depends_on:
@@ -22,13 +17,15 @@ services:
   web:
     build:
       context: containers/nginx
-    volumes:
-      - public-data:/fd_tube_app/public
-      - tmp-data:/fd_tube_app/tmp
     ports:
       - 80:80
-volumes:
-    public-data:
-    tmp-data:
-    log-data:
+    volumes_from:
+      - web
+    # volumes:
+    #   - public-data:/fd_tube_app/public
+    #   - tmp-data:/fd_tube_app/tmp
+# volumes:
+#     public-data:
+#     tmp-data:
+#     log-data:
     # db-data:
