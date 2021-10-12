@@ -20,7 +20,7 @@ services:
     ports:
       - 80:80
     volumes_from:
-      - web
+      - app
     # volumes:
     #   - public-data:/fd_tube_app/public
     #   - tmp-data:/fd_tube_app/tmp
