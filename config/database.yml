@@ -24,7 +24,8 @@ default: &default
 
 development:
   <<: *default
-  database: fd_tube_app_development
+  # database: fd_tube_app_development
+  database: fire_development
 
 test:
   <<: *default
