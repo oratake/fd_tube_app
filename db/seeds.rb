@@ -9,7 +9,7 @@
 User.create!(
   user_name: "honbu",
   first_name: "本部",
-  last_name: "FD"
+  last_name: "FD",
   email: "honbu@example.com",
   password: "0000",
   password_confirmation: "0000",

@@ -2,7 +2,7 @@ version: '3'
 services:
   # ======ローカル環境の設定====== #
   db:
-    image: postgres
+    image: postgres:13
     environment:
       POSTGRES_HOST_AUTH_METHOD: 'trust'
       POSTGRES_PASSWORD: <%= ENV['DB_PASSWORD'] %> 
