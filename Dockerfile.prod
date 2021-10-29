@@ -1,4 +1,7 @@
 FROM ruby:2.7.3
+
+ENV RAILS_ENV=production
+
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 
 # yarnパッケージ管理ツールをインストール
@@ -26,9 +29,9 @@ RUN mkdir -p tmp/sockets
 RUN mkdir -p tmp/pids
 
 # Expose volumes to frontend
-VOLUME /app/public
-VOLUME /app/tmp
+VOLUME /fd_tube_app/public
+VOLUME /fd_tube_app/tmp
 
 # Start Server
 # TODO: environment
-CMD bundle exec puma
+CMD bash -c "rm -f tmp/pids/server.pid && bundle exec puma -C config/puma.rb -e production"

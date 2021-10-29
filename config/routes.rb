@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  # root to: "home#top"
-  root to: "videos#index"
+  root to: "home#top"
+  # root to: "videos#index"
   devise_for :users, :controllers => {
     :registrations => 'users/registrations'
    }
