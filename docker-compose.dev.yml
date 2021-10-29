@@ -1,0 +1,36 @@
+version: '3'
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: 'trust'
+      POSTGRES_PASSWORD: <%= ENV['DB_PASSWORD'] %> 
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+  
+  rails_dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: bundle exec puma -C config/puma.rb
+    volumes:
+      - .:/fd_tube_app
+      - public-data:/fd_tube_app/public
+      - tmp-data:/fd_tube_app/tmp
+      - log-data:/fd_tube_app/log
+
+  web_dev:
+    build:
+      context: containers/nginx
+    volumes:
+      - public-data:/fd_tube_app/public
+      - tmp-data:/fd_tube_app/tmp
+    ports:
+      - 80:80
+    tty: true
+
+volumes:
+    public-data:
+    tmp-data:
+    log-data:
+    db-data:
