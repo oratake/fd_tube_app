@@ -3,6 +3,8 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@1.1.2
   node: circleci/node@2
+  aws-ecr: circleci/aws-ecr@6.15
+  aws-ecs: circleci/aws-ecs@2.0.0
 commands:
   setup:
     steps:
@@ -17,7 +19,7 @@ jobs:
       - image: circleci/ruby:2.7.3-node
     steps:
       - setup
-  test:
+  rspec:
     docker:
       - image: circleci/ruby:2.7.3-node
       - image: circleci/postgres:11.12
@@ -44,11 +46,60 @@ jobs:
       - run:
           name: Rspec
           command: bundle exec rspec
+        
 workflows:
   version: 2
-  test_and_deploy:
+  nginx_deploy:
     jobs:
       - build
-      - test:
+      - rspec:
           requires:
             - build
+      - aws-ecr/build-and-push-image:
+          requires:
+            - rspec
+          account-url: AWS_ECR_ACCOUNT_URL
+          region: AWS_REGION
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          create-repo: true
+          dockerfile: ./containers/nginx/Dockerfile
+          repo: fd_tube_app_web
+          tag: "${CIRCLE_SHA1}"
+          filters:
+            branches:
+              only: master
+      - aws-ecs/deploy-service-update:
+          requires:
+            - aws-ecr/build-and-push-image
+          family: 'fd-tube-app-task'
+          cluster-name: 'fd-tube-cluster'
+          service-name: 'fd-tube-app-alb-service'
+          container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
+  rails_deploy:
+    jobs:
+      - build
+      - rspec:
+          requires:
+            - build
+      - aws-ecr/build-and-push-image:
+          requires:
+            - rspec
+          account-url: AWS_ECR_ACCOUNT_URL
+          region: AWS_REGION
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          create-repo: true
+          dockerfile: ./Dockerfile.prod
+          repo: fd_tube_app_rails
+          tag: "${CIRCLE_SHA1}"
+          filters:
+            branches:
+              only: master
+      - aws-ecs/deploy-service-update:
+          requires:
+            - aws-ecr/build-and-push-image
+          family: 'fd-tube-app-task'
+          cluster-name: 'fd-tube-cluster'
+          service-name: 'fd-tube-app-alb-service'
+          container-image-name-updates: "container=rails,tag=${CIRCLE_SHA1}"
