@@ -14,11 +14,11 @@ commands:
           pkg-manager: yarn
           cache-key: "yarn.lock"
 jobs:
-  build:
-    docker:
-      - image: circleci/ruby:2.7.3-node
-    steps:
-      - setup
+  # build:
+  #   docker:
+  #     - image: circleci/ruby:2.7.3-node
+  #   steps:
+  #     - setup
   rspec:
     docker:
       - image: circleci/ruby:2.7.3-node
@@ -51,10 +51,11 @@ workflows:
   version: 2
   nginx_deploy:
     jobs:
-      - build
-      - rspec:
-          requires:
-            - build
+      - rspec
+      # - build
+      # - rspec:
+      #     requires:
+      #       - build
       - aws-ecr/build-and-push-image:
           requires:
             - rspec
@@ -63,7 +64,7 @@ workflows:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           create-repo: true
-          dockerfile: ./containers/nginx/Dockerfile
+          dockerfile: containers/nginx/Dockerfile
           repo: fd_tube_app_web
           tag: "${CIRCLE_SHA1}"
           filters:
@@ -78,10 +79,11 @@ workflows:
           container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
   rails_deploy:
     jobs:
-      - build
-      - rspec:
-          requires:
-            - build
+      - rspec
+      # - build
+      # - rspec:
+      #     requires:
+      #       - build
       - aws-ecr/build-and-push-image:
           requires:
             - rspec
@@ -90,7 +92,7 @@ workflows:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           create-repo: true
-          dockerfile: ./Dockerfile.prod
+          dockerfile: Dockerfile.prod
           repo: fd_tube_app_rails
           tag: "${CIRCLE_SHA1}"
           filters:

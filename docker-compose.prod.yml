@@ -14,7 +14,8 @@ services:
 
   web:
     build:
-      context: containers/nginx
+      context: .
+      dockerfile: ./containers/nginx/Dockerfile
     platform: linux/amd64
     volumes:
       - public-data:/fd_tube_app/public
