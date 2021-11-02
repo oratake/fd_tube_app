@@ -27,9 +27,9 @@ class Admin::S3filesController < ApplicationController
       key = filename
       object = bucket.object(key)
       object.upload_file(file_path, acl:'public-read')
-
+      redirect_to admin_s3files_path, flash: {notice: "動画を投稿しました"}
     else
-      flash[:alert] = "失敗っす"
+      flash[:alert] = "失敗しました"
       render "new"
     end
   end
