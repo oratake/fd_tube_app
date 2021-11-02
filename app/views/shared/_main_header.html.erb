@@ -14,7 +14,8 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <% if current_user.admin? %>
-            <li><%= link_to "動画を投稿", "/admin/s3files/new", class: "dropdown-item" %></li>
+            <li><%= link_to "投稿した動画一覧", admin_s3files_path, class: "dropdown-item" %></li>
+            <li><%= link_to "動画を投稿する", "/admin/s3files/new", class: "dropdown-item" %></li>
             <li><%= link_to "ユーザー管理画面", users_path, class: "dropdown-item" %></li>
           <% end %>
           <li><%= link_to "アカウント確認", "/users/#{current_user.id}", class: "dropdown-item" %></li>
