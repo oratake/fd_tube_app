@@ -14,11 +14,6 @@ commands:
           pkg-manager: yarn
           cache-key: "yarn.lock"
 jobs:
-  # build:
-  #   docker:
-  #     - image: circleci/ruby:2.7.3-node
-  #   steps:
-  #     - setup
   rspec:
     docker:
       - image: circleci/ruby:2.7.3-node
@@ -52,10 +47,6 @@ workflows:
   nginx_deploy:
     jobs:
       - rspec
-      # - build
-      # - rspec:
-      #     requires:
-      #       - build
       - aws-ecr/build-and-push-image:
           requires:
             - rspec
@@ -80,10 +71,6 @@ workflows:
   rails_deploy:
     jobs:
       - rspec
-      # - build
-      # - rspec:
-      #     requires:
-      #       - build
       - aws-ecr/build-and-push-image:
           requires:
             - rspec

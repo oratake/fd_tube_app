@@ -9,7 +9,7 @@ header {
 }
 
 .header-logo {
-  color: #fcdd54;
+  color: #fff;
   font-size: 36px;
   text-shadow: 1px 2px 3px #808080; 
 }
@@ -30,9 +30,21 @@ header {
     color: white;
     font-weight: 600;
     padding-top: 12px;
+    white-space: nowrap;
+    padding: 12px 0 0 9px;
   }
 
   & .btn {
     box-shadow: none !important;
   }
+}
+
+.notice {
+  background-color: #98e9e9;
+  padding-left: 10px;
+}
+
+.origin-alert {
+  background-color: #ffb097;
+  padding-left: 10px;
 }
