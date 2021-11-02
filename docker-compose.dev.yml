@@ -18,16 +18,19 @@ services:
       - public-data:/fd_tube_app/public
       - tmp-data:/fd_tube_app/tmp
       - log-data:/fd_tube_app/log
+    tty: true
+    stdin_open: true
 
   web_dev:
     build:
-      context: containers/nginx
+      context: containers/nginx/develop/Dockerfile.dev
     volumes:
       - public-data:/fd_tube_app/public
       - tmp-data:/fd_tube_app/tmp
     ports:
       - 80:80
     tty: true
+    stdin_open: true
 
 volumes:
     public-data:
