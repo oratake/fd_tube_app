@@ -20,10 +20,13 @@ services:
       - log-data:/fd_tube_app/log
     tty: true
     stdin_open: true
+    depends_on:
+      - db
 
   web_dev:
     build:
-      context: containers/nginx/develop/Dockerfile.dev
+      context: .
+      dockerfile: ./containers/nginx/develop/Dockerfile.dev
     volumes:
       - public-data:/fd_tube_app/public
       - tmp-data:/fd_tube_app/tmp
