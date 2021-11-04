@@ -55,7 +55,8 @@ workflows:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           create-repo: true
-          dockerfile: containers/nginx/Dockerfile
+          context: .
+          dockerfile: ./containers/nginx/Dockerfile
           repo: fd_tube_app_web
           tag: "${CIRCLE_SHA1}"
           filters:
@@ -66,7 +67,7 @@ workflows:
             - aws-ecr/build-and-push-image
           family: 'fd-tube-app-task'
           cluster-name: 'fd-tube-cluster'
-          service-name: 'fd-tube-app-alb-service'
+          service-name: 'fd-tube-app-service'
           container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
   rails_deploy:
     jobs:
@@ -90,5 +91,5 @@ workflows:
             - aws-ecr/build-and-push-image
           family: 'fd-tube-app-task'
           cluster-name: 'fd-tube-cluster'
-          service-name: 'fd-tube-app-alb-service'
+          service-name: 'fd-tube-app-service'
           container-image-name-updates: "container=rails,tag=${CIRCLE_SHA1}"
