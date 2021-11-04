@@ -44,31 +44,30 @@ jobs:
         
 workflows:
   version: 2
-  # Nginxコンテナの設定変更時に実行
-  # nginx_deploy:
-  #   jobs:
-  #     - rspec
-  #     - aws-ecr/build-and-push-image:
-  #         requires:
-  #           - rspec
-  #         account-url: AWS_ECR_ACCOUNT_URL
-  #         region: AWS_REGION
-  #         aws-access-key-id: AWS_ACCESS_KEY_ID
-  #         aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-  #         create-repo: true
-  #         dockerfile: containers/nginx/Dockerfile
-  #         repo: fd_tube_app_web
-  #         tag: "${CIRCLE_SHA1}"
-  #         filters:
-  #           branches:
-  #             only: master
-  #     - aws-ecs/deploy-service-update:
-  #         requires:
-  #           - aws-ecr/build-and-push-image
-  #         family: 'fd-tube-app-task'
-  #         cluster-name: 'fd-tube-cluster'
-  #         service-name: 'fd-tube-app-alb-service'
-  #         container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
+  nginx_deploy:
+    jobs:
+      - rspec
+      - aws-ecr/build-and-push-image:
+          requires:
+            - rspec
+          account-url: AWS_ECR_ACCOUNT_URL
+          region: AWS_REGION
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          create-repo: true
+          dockerfile: containers/nginx/Dockerfile
+          repo: fd_tube_app_web
+          tag: "${CIRCLE_SHA1}"
+          filters:
+            branches:
+              only: master
+      - aws-ecs/deploy-service-update:
+          requires:
+            - aws-ecr/build-and-push-image
+          family: 'fd-tube-app-task'
+          cluster-name: 'fd-tube-cluster'
+          service-name: 'fd-tube-app-alb-service'
+          container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
   rails_deploy:
     jobs:
       - rspec
