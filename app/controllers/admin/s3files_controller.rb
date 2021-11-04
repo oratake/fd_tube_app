@@ -27,9 +27,9 @@ class Admin::S3filesController < ApplicationController
       key = filename
       object = bucket.object(key)
       object.upload_file(file_path, acl:'public-read')
-
+      redirect_to admin_s3files_path, flash: {notice: "動画を投稿しました"}
     else
-      flash[:alert] = "失敗っす"
+      flash[:alert] = "失敗しました"
       render "new"
     end
   end
@@ -47,19 +47,23 @@ class Admin::S3filesController < ApplicationController
     object.delete  # オブジェクト（ファイル）削除
   
     s3file.destroy
-    redirect_to admin_s3files_path, flash: {notice: "ファイル [#{key}] を削除しました"}
+    redirect_to admin_s3files_path, flash: {alert: "削除しました"}
   end
 
   private
 
   def get_s3_resource
-    Aws::S3::Resource.new(
-      region: @region,
-      credentials: Aws::Credentials.new(
-          ENV['AWS_ACCESS_KEY'],  
-          ENV['AWS_SECRET_KEY']
-       )
-    )
+    # Cloud9(EC2)使用の場合
+    Aws::S3::Resource.new(region: @region)
+
+    # ローカル環境時
+    # Aws::S3::Resource.new(
+    #   region: @region,
+    #   credentials: Aws::Credentials.new(
+    #       ENV['AWS_ACCESS_KEY'],  
+    #       ENV['AWS_SECRET_KEY']
+    #    )
+    # )
   end
 
   def s3file_params
