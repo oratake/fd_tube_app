@@ -53,17 +53,20 @@ class Admin::S3filesController < ApplicationController
   private
 
   def get_s3_resource
-    # Cloud9(EC2)使用の場合
-    # Aws::S3::Resource.new(region: @region)
+    # ECS(本番環境)時
+    Aws::S3::Resource.new(
+      region: @region
+      credentials: Aws::ECSCredentials.new
+    )
 
     # ローカル環境時
-    Aws::S3::Resource.new(
-      region: @region,
-      credentials: Aws::Credentials.new(
-          ENV['AWS_ACCESS_KEY'],  
-          ENV['AWS_SECRET_KEY']
-       )
-    )
+    # Aws::S3::Resource.new(
+    #   region: @region,
+    #   credentials: Aws::Credentials.new(
+    #       ENV['AWS_ACCESS_KEY'],  
+    #       ENV['AWS_SECRET_KEY']
+    #    )
+    # )
   end
 
   def s3file_params

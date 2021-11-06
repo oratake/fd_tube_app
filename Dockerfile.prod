@@ -28,6 +28,9 @@ ENTRYPOINT ["entrypoint.sh"]
 RUN mkdir -p tmp/sockets
 RUN mkdir -p tmp/pids
 
+# ECS,IAMロールを使用するための環境変数をセット
+RUN echo 'export $(strings /proc/1/environ | grep AWS_CONTAINER_CREDENTIALS_RELATIVE_URI)' >> /etc/bashrc​
+
 # Expose volumes to frontend
 VOLUME /fd_tube_app/public
 VOLUME /fd_tube_app/tmp
