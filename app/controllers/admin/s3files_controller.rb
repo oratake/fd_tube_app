@@ -55,10 +55,9 @@ class Admin::S3filesController < ApplicationController
   def get_s3_resource
     # ECS(本番環境)時
     Aws::S3::Resource.new(
-      region: @region
+      region: @region,
       credentials: Aws::ECSCredentials.new
     )
-
     # ローカル環境時
     # Aws::S3::Resource.new(
     #   region: @region,
