@@ -27,6 +27,8 @@ RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 RUN mkdir -p tmp/sockets
 RUN mkdir -p tmp/pids
+# 動画一時保存用のファイル作成
+RUN mkdir -p tmp/s3
 
 # ECS,IAMロールを使用するための環境変数をセット
 RUN echo 'export $(strings /proc/1/environ | grep AWS_CONTAINER_CREDENTIALS_RELATIVE_URI)' >> /etc/bashrc​
