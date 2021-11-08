@@ -1,6 +1,6 @@
 <div class="container-fluid video–container">
   <div class="row">
-    <div class="video-box_show col-md-9">
+    <div class="video-box_show col-md-8">
       <div class="video-inner_show">
         <video-js controls id=player-id class="vjs-theme-sea" data-setup='{"liveui": true,"fluid": true}'>
           <source src="https://<%=ENV['AWS_CLOUDFRONT_MOVIE_URL']%><%=@s3file_name%>_hls.m3u8" type="application/x-mpegURL">
@@ -15,10 +15,39 @@
         <div class="video-info-description"><%= @s3file.video.description %></div>
       </div>
     </div>
-    <%#=  
-    <div class="user-comment-box col-md-3 bg-light">
-      <p>コメントボックス</p>
+    <div class="user-comment-box col-md-4 bg-light">
+
+      <% if user_signed_in? %>
+        <form class="form-inline" id="comment">
+          <div class="row">
+            <div class="form-group col-sm-3">
+              <span class="mdi mdi-person user-icon"></span>
+            </div>
+            <div class="form-group col-sm-6">
+              <input name="comment[context]" type="textarea" v-model="context" />
+              <input name="comment[user_id]" type="hidden" v-model="user_id" value="<%= @user.id %>" />
+              <input name="comment[video_id]" type="hidden" v-model="video_id" value="<%= @s3file.video.id %>" />
+            </div>
+            <div class="col-sm-3">
+              <button v-on:click="comment_create" class="btn btn-primary">コメントを送信</button>
+            </div>
+          </div>
+        </form>
+      <% end %>
+      <ul id="comments_index">
+        <li v-for="comment in comments">
+          <div class="col-sm-3">
+            <span class="mdi mdi-person user-icon"></span>
+            <%= '{{ comment.user_name }}' %>
+          </div>
+          <div class="col-sm-6">
+            <%= '{{ comment.context }}' %>
+          </div>
+        </li>
+      </ul>
+
     </div>
-     %>
   </div>
 </div>
+<%= javascript_pack_tag 'comments_index' %>
+<%= javascript_pack_tag 'comment_create' %>
