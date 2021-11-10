@@ -1,3 +1,16 @@
+// import Vue from 'vue'
+// import App from '../CommentCreateForm.vue'
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   const app = new Vue({
+//     render: h => h(App)
+//   }).$mount()
+//   document.body.appendChild(app.$el)
+
+//   console.log(app)
+// })
+
+
 import Vue from 'vue'
 import axios from 'axios'
 axios.defaults.headers.common = {
@@ -14,7 +27,7 @@ new Vue({
     methods: {
         comment_create: function() {
             axios
-                .post('http://0.0.0.0:3000/api/v1/comments.json', {
+                .post('http://localhost:80/api/v1/comments.json', {
                     comment: {
                         context: this.context,
                         user_id: this.user_id,

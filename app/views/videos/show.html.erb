@@ -20,16 +20,13 @@
       <% if user_signed_in? %>
         <form class="form-inline" id="comment">
           <div class="row">
-            <div class="form-group col-sm-3">
-              <span class="mdi mdi-person user-icon"></span>
-            </div>
-            <div class="form-group col-sm-6">
+            <div class="form-group col-sm-9">
               <input name="comment[context]" type="textarea" v-model="context" />
               <input name="comment[user_id]" type="hidden" v-model="user_id" value="<%= @user.id %>" />
               <input name="comment[video_id]" type="hidden" v-model="video_id" value="<%= @s3file.video.id %>" />
             </div>
             <div class="col-sm-3">
-              <button v-on:click="comment_create" class="btn btn-primary">コメントを送信</button>
+              <button v-on:click="comment_create" class="btn btn-primary">送信</button>
             </div>
           </div>
         </form>
@@ -37,7 +34,6 @@
       <ul id="comments_index">
         <li v-for="comment in comments">
           <div class="col-sm-3">
-            <span class="mdi mdi-person user-icon"></span>
             <%= '{{ comment.user_name }}' %>
           </div>
           <div class="col-sm-6">
