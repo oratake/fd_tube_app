@@ -10,7 +10,7 @@ new Vue({
         get_comments: function() {
             axios
                 // 本番環境
-                .get('http://fd-tube-app-ecs-db.czbz1z7vxwci.ap-northeast-1.rds.amazonaws.com/api/v1/comments.json', {
+                .get('http://ecs-fd-tube-app-alb-242793914.ap-northeast-1.elb.amazonaws.com/api/v1/comments.json', {
                 // ローカル
                 // .get('http://localhost:80/api/v1/comments.json', {
                     params: {
