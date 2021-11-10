@@ -8,12 +8,12 @@ class Api::V1::CommentsController < ApiController
 
   def create
     @comment = Comment.new(comment_params)
-    
-    # binding.pry
-    if @comment.save
-      render :index, status: :created
-    else
+
+    if @comment.context.blank?
       render json: @comment.errors, status: :unprocessable_entity
+    else
+      @comment.save
+      render :index, status: :created
     end
   end
 
