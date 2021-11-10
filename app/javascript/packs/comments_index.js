@@ -9,8 +9,10 @@ new Vue({
     methods: {
         get_comments: function() {
             axios
-                .get('http://localhost:80/api/v1/comments.json', {
-                // .get('/api/v1/comments.json', {
+                // 本番環境
+                .get('http://fd-tube-app-ecs-db.czbz1z7vxwci.ap-northeast-1.rds.amazonaws.com/api/v1/comments.json', {
+                // ローカル
+                // .get('http://localhost:80/api/v1/comments.json', {
                     params: {
                         video_id: this.video_id
                     }

@@ -14,7 +14,10 @@ new Vue({
     methods: {
         comment_create: function() {
             axios
-                .post('http://localhost:80/api/v1/comments.json', {
+                // 本番環境
+                .post('http://127.0.0.0:80/api/v1/comments.json', {
+                // ローカル
+                // .post('http://localhost:80/api/v1/comments.json', {
                     comment: {
                         context: this.context,
                         user_id: this.user_id,
