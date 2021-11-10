@@ -58,6 +58,7 @@ class Admin::S3filesController < ApplicationController
       region: @region,
       credentials: Aws::ECSCredentials.new
     )
+    
     # ローカル環境時
     # Aws::S3::Resource.new(
     #   region: @region,

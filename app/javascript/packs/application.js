@@ -13,5 +13,5 @@ import '../stylesheets/application.scss';
 require("video.js")
 
 Rails.start()
-Turbolinks.start()
+// Turbolinks.start()
 ActiveStorage.start()
