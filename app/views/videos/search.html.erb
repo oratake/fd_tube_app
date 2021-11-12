@@ -1,0 +1,25 @@
+<div class="container-fluid video–container">
+  <div class="row">
+    <% @results.each do |result| %>
+      <div class="video-box_index col-md-4 p-3">
+        <%= link_to "/videos/#{result.s3file.id}", controller: "show" do %>
+          <div class="thumbnail-innner">
+            <%= image_tag "https://#{ENV['AWS_S3_OUTPUT_BUCKET_NAME']}.s3.ap-northeast-1.amazonaws.com/thumbnail/#{result.s3file.file_name.split(".").first}_pic.0000000.jpg" %>
+          </div>
+          <div class="row">
+            <div class="video-icon-inner_index col-2 pt-2">
+              <div class="header-icon-inner">
+               <p><%#= first_name %></p>
+              </div>
+            </div>
+            <div class="video-info-inner_index col-10 pt-2">
+              <h4><%= result.title %></h4>
+              <div><%= result.description %></div>
+              <div><%= result.updated_at %></div>
+            </div>
+        </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
