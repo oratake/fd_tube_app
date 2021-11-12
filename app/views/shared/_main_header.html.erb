@@ -5,6 +5,15 @@
     </div>
   </div>
   <% if user_signed_in? %>
+  <div class="header-center">
+    <div class="search-box">
+      <%= search_form_for @q, url: search_videos_path do |f| %>
+        <%= f.label :title_cont %>
+        <%= f.search_field :title_cont %>
+        <%= f.submit '検索' %>
+      <% end %>
+    </div>
+  </div>
   <div class="header-right">
     <div class="header-icon-inner">
       <div class="dropdown">
