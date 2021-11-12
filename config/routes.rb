@@ -7,7 +7,12 @@ Rails.application.routes.draw do
     delete "users/:id", to: "users/registrations#destroy"
   end
 
-  resources :videos, only: [:index, :show]
+  resources :videos, only: [:index, :show] do
+    collection do
+      get "search"
+    end
+  end
+  
   resources :users, only: [:index, :show]
   
   namespace :admin do
@@ -22,6 +27,8 @@ Rails.application.routes.draw do
       resources :comments, except: %i[update]
     end
   end
+
+
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
