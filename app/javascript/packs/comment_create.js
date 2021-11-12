@@ -15,7 +15,7 @@ new Vue({
         comment_create: function() {
             axios
                 // 本番環境
-                .post('http://0.0.0.0:80/api/v1/comments.json', {
+                .post('http://ecs-fd-tube-app-alb-242793914.ap-northeast-1.elb.amazonaws.com/api/v1/comments.json', {
                 // ローカル
                 // .post('http://localhost:80/api/v1/comments.json', {
                     comment: {
