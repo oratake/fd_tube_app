@@ -14,4 +14,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:user_name, :first_name, :last_name])
     devise_parameter_sanitizer.permit(:account_update, keys: [:user_name, :first_name, :last_name])
   end
+
+  def set_q
+    @q = Video.ransack(params[:q])
+  end
+
 end
