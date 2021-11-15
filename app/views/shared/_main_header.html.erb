@@ -8,9 +8,9 @@
   <div class="header-center">
     <div class="search-box">
       <%= search_form_for @q, url: search_videos_path do |f| %>
-        <%= f.label :title_cont %>
-        <%= f.search_field :title_cont %>
-        <%= f.submit '検索' %>
+        <% f.label :title_cont %>
+        <%= f.search_field :title_cont, size: "45px", class: "search-box-form" %>
+        <%= f.submit "検索", class: 'btn btn-outline-secondary' %>
       <% end %>
     </div>
   </div>
