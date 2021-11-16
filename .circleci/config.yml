@@ -17,24 +17,11 @@ jobs:
   rubocop:
     docker:
       - image: circleci/ruby:2.7.3-node
-      - image: circleci/postgres:11.12
-        name: "db"
-        environment:
-          POSTGRES_USER: postgres
-          POSTGRES_DB: fd_tube_app_test
-          POSTGRES_PASSWORD: <%= ENV['DB_PASSWORD'] %>
-    environment:
-      BUNDLE_JOBS: "4"
-      BUNDLE_RETRY: "3"
-      PGHOST: 127.0.0.1
-      PGUSER: postgres
-      PGPASSWORD: <%= ENV['DB_PASSWORD'] %>
-      RAILS_ENV: test
     steps:
       - setup
       - run:
-          name: rubocop
-          command: bundle exec rubocop
+          name: Run rubocop
+          command: bundle exec rubocop --parallel
   rspec:
     docker:
       - image: circleci/ruby:2.7.3-node
@@ -53,14 +40,20 @@ jobs:
       RAILS_ENV: test
     steps:
       - setup
+      # - run:
+      #     name: rails db:migrate
+      #     command: bundle exec rails db:migrate
+      # - run:
+      #     name: Database setup
+      #     command: bundle exec rails db:schema:load --trace
       - run:
-          name: rails db:migrate
-          command: bundle exec rails db:migrate
+          name: Start containers and verify it is working
+          command: |
+            set -x
+            docker-compose -f docker-compose.dev.yml up -d
+            docker exec rails_dev curl -4 --retry 10 --retry-delay 3 --retry-connrefused http://localhost:80
       - run:
-          name: Database setup
-          command: bundle exec rails db:schema:load --trace
-      - run:
-          name: rspec
+          name: Run rspec
           command: bundle exec rspec
         
 workflows:
@@ -68,9 +61,8 @@ workflows:
   nginx_deploy:
     jobs:
       - rspec
+      - rubocop
       - aws-ecr/build-and-push-image:
-          requires:
-            - rspec
           account-url: AWS_ECR_ACCOUNT_URL
           region: AWS_REGION
           aws-access-key-id: AWS_ACCESS_KEY_ID
@@ -93,8 +85,6 @@ workflows:
     jobs:
       - rspec
       - aws-ecr/build-and-push-image:
-          requires:
-            - rspec
           account-url: AWS_ECR_ACCOUNT_URL
           region: AWS_REGION
           aws-access-key-id: AWS_ACCESS_KEY_ID
