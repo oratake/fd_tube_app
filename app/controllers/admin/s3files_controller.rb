@@ -1,4 +1,6 @@
 class Admin::S3filesController < ApplicationController
+  before_action :set_q
+
   def initialize
     super
     @region = 'ap-northeast-1'

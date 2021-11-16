@@ -1,5 +1,5 @@
 class Api::V1::CommentsController < ApiController
-  before_action :set_comment, only: [:show]
+  before_action :set_q, :set_comment, only: [:show]
 
   def index
     @video = Video.find(params[:video_id])

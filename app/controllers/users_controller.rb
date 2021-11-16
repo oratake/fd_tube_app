@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :if_not_admin, only: [:index]
+  before_action :set_q, :if_not_admin, only: [:index]
 
   def index
     @users = User.where(delete_at: nil)

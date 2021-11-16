@@ -15,10 +15,4 @@ class VideosController < ApplicationController
   def search
     @results = @q.result
   end
-
-  private
-
-  def set_q
-    @q = Video.ransack(params[:q])
-  end
 end
