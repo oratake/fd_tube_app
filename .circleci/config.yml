@@ -51,7 +51,7 @@ jobs:
           command: |
             set -x
             docker-compose -f docker-compose.dev.yml up -d
-            docker exec rails_dev curl -4 --retry 10 --retry-delay 3 --retry-connrefused http://localhost:80
+            docker-compose -f docker-compose.dev.yml exec rails_dev curl -4 --retry 10 --retry-delay 3 --retry-connrefused http://localhost:80
       - run:
           name: Run rspec
           command: bundle exec rspec
@@ -84,6 +84,7 @@ workflows:
   rails_deploy:
     jobs:
       - rspec
+      - rubocop
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_ACCOUNT_URL
           region: AWS_REGION
