@@ -12,8 +12,7 @@ class Admin::VideosController < ApplicationController
     redirect_to admin_s3files_path
   end
 
-  def destroy
-  end
+  def destroy; end
 
   private
 

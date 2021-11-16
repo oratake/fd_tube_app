@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
   before_action :set_q
-  
-  def top
-  end
+
+  def top; end
 end
