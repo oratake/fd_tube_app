@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  root to: "home#top"
+  # root to: "home#top"
+  devise_scope :user do
+    root "users/sessions#new"
+  end
+  
   devise_for :users, :controllers => {
     :registrations => 'users/registrations'
    }
