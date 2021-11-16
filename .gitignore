@@ -36,6 +36,7 @@ yarn-debug.log*
 .yarn-integrity
 
 /.env
-/.rcpec
+/.ruby-version
+/.rspec
 /.rubocop.yml
 /.rubocop_todo.yml
