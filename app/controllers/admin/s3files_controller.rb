@@ -18,7 +18,7 @@ class Admin::S3filesController < ApplicationController
     @s3file.build_video
   end
   
-  def create
+  def create # rubocop:disable
     @s3file = S3file.new(s3file_params.merge(file_name: s3file_params[:key].original_filename))
     if @s3file.save
       file = s3file_params[:key]
@@ -54,7 +54,7 @@ class Admin::S3filesController < ApplicationController
 
   private
 
-  def get_s3_resource
+  def get_s3_resource # rubocop:disable
     # ECS(本番環境)時
     Aws::S3::Resource.new(
       region: @region,
