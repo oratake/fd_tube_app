@@ -20,6 +20,8 @@ services:
       - log-data:/fd_tube_app/log
     tty: true
     stdin_open: true
+    environment:
+      - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
     depends_on:
       - db
 
@@ -34,6 +36,11 @@ services:
       - 80:80
     tty: true
     stdin_open: true
+
+  selenium_chrome:
+    image: selenium/standalone-chrome-debug
+    logging:
+      driver: none
 
 volumes:
     public-data:
