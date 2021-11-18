@@ -26,6 +26,10 @@ jobs:
       - run:
           name: Setup containers
           command: docker-compose -f docker-compose.dev.yml up -d
+      
+      - run:
+          name: db接続を待機
+          command: sleep 10
 
       - run:
           name: Rails container IN
