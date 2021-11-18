@@ -17,6 +17,8 @@ jobs:
   rspec:
     machine:
       image: circleci/classic:edge
+      ## 追記
+      docker_layer_caching: true
     steps:
       - checkout
       - run:
@@ -28,11 +30,15 @@ jobs:
           command: docker-compose -f docker-compose.dev.yml up -d
       
       - run:
-          name: db接続を待機
+          name: sleep 10second
           command: sleep 10
+      
+      - run:
+          name: Setup DB
+          command: docker-compose -f docker-compose.dev.yml exec rails_dev bundle exec rails db:migrate RAILS_ENV=test
 
       - run:
-          name: Rails container IN
+          name: Rails container in
           command: docker-compose -f docker-compose.dev.yml exec rails_dev bash
             
       - run:
