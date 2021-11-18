@@ -35,7 +35,7 @@ jobs:
       
       - run:
           name: Setup DB
-          command: docker-compose -f docker-compose.dev.yml exec rails_dev bundle exec rails db:migrate
+          command: docker-compose -f docker-compose.dev.yml exec rails_dev bundle exec rails db:create db:migrate
 
       - run:
           name: Rails container in
