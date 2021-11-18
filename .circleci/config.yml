@@ -20,22 +20,22 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Duild containers
-        command: docker-compose -f docker-compose.dev.yml build
+          name: Build containers
+          command: docker-compose -f docker-compose.dev.yml build
 
       - run:
-        name: Setup containers
-        command: docker-compose -f docker-compose.dev.yml up -d
+          name: Setup containers
+          command: docker-compose -f docker-compose.dev.yml up -d
 
       - run:
-        name: Start RSpec,Rubocop
-        command: |
-          docker-compose -f docker-compose.dev.yml exec rails_dev bash 
-          bundle exec rspec
+          name: Start RSpec,Rubocop
+          command: |
+            docker-compose -f docker-compose.dev.yml exec rails_dev bash 
+            bundle exec rspec
 
       - run:
-        name: Down containers
-        command: docker-compose -f docker-compose.dev.yml down
+          name: Down containers
+          command: docker-compose -f docker-compose.dev.yml down
 
 
   # rubocop:
@@ -111,7 +111,7 @@ workflows:
   rails_deploy:
     jobs:
       - rspec
-      - rubocop
+      # - rubocop
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_ACCOUNT_URL
           region: AWS_REGION
