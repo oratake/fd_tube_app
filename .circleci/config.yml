@@ -5,6 +5,7 @@ orbs:
   node: circleci/node@2
   aws-ecr: circleci/aws-ecr@6.15
   aws-ecs: circleci/aws-ecs@2.0.0
+
 commands:
   setup:
     steps:
@@ -13,6 +14,7 @@ commands:
       - node/install-packages:
           pkg-manager: yarn
           cache-key: "yarn.lock"
+
 jobs:
   rspec:
     machine:
@@ -32,11 +34,13 @@ jobs:
           command: docker-compose -f docker-compose.dev.yml up -d
       
       - run:
-          name: rails db:migrate
-          command: bundle exec rails db:migrate
+          name: sleep 10second
+          command: sleep 10
+      
       - run:
-          name: Database setup
-          command: bundle exec rails db:schema:load --trace
+          name: Setup DB
+          command: docker-compose -f docker-compose.dev.yml run rails_dev rails db:create db:migrate
+            
       - run:
           name: Start RSpec
           command: docker-compose -f docker-compose.dev.yml run rails_dev bundle exec rspec
@@ -44,7 +48,7 @@ jobs:
       - run:
           name: Down containers
           command: docker-compose -f docker-compose.dev.yml down
-       
+
 workflows:
   version: 2
   nginx_deploy:
