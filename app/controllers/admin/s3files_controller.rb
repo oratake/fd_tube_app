@@ -74,8 +74,4 @@ class Admin::S3filesController < ApplicationController
   def s3file_params
     params.require(:s3file).permit(:key, video_attributes: %i[id title description remarks])
   end
-
-  def change_mp4
-    filename = filename.split('.').first.concat('.mp4') unless filename.end_with?('mp4')
-  end
 end
