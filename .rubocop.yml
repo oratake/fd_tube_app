@@ -1,0 +1,81 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+
+AllCops:
+  TargetRubyVersion: 2.7
+  TargetRailsVersion: 6.1
+  Exclude:
+    - 'vendor/**/*'
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'tmp/**/*'
+    - 'node_modules/**/*'
+    - 'lib/tasks/auto_annotate_models.rake'
+
+Rails:
+  Enabled: true
+
+Rails/FilePath:
+  Exclude:
+    - 'lib/tasks/dev.rake'
+    - 'spec/rails_helper.rb'
+
+Rails/FilePath:
+  Enabled: false
+  
+Style/AsciiComments:
+  Enabled: false
+
+RSpec/ContextWording:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 200
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - "Rakefile"
+    - "**/*.rake"
+    - "spec/**/*"
+    - "Gemfile"
+    - "config/environments/*.rb"
+    - "config/routes.rb"
+  Max: 40
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/MethodLength:
+  Max: 20
+
+Style/StringConcatenation:
+  Exclude:
+    - 'app/controllers/users/registrations_controller.rb'
+
+RSpec/ExampleLength:
+  Max: 8
+
+RSpec/NestedGroups:
+  Max: 4
+
+# rails初期設定ファイル
+Style/RedundantFetchBlock:
+  Exclude:
+    - 'config/puma.rb'
+
+Style/GlobalStdStream:
+  Exclude:
+    - 'config/environments/production.rb'
