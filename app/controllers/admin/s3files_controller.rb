@@ -6,7 +6,7 @@ class Admin::S3filesController < ApplicationController
     @region = 'ap-northeast-1'
     @input_bucketname = ENV['AWS_S3_INPUT_BUCKET_NAME']
     @output_bucketname = ENV['AWS_S3_OUTPUT_BUCKET_NAME']
-    @s3 = get_s3_resource
+    @s3 = s3_resource
   end
 
   def index
@@ -54,7 +54,7 @@ class Admin::S3filesController < ApplicationController
 
   private
 
-  def get_s3_resource # rubocop:disable
+  def s3_resource # rubocop:disable
     # ECS(本番環境)時
     Aws::S3::Resource.new(
       region: @region,
