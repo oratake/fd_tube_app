@@ -3,8 +3,9 @@ services:
   db:
     image: postgres:13
     environment:
-      POSTGRES_HOST_AUTH_METHOD: 'trust'
-      POSTGRES_PASSWORD: <%= ENV['DB_PASSWORD'] %> 
+      # POSTGRES_HOST_AUTH_METHOD: 'trust'
+      POSTGRES_USER: <%= ENV['DB_USERNAME'] %>
+      POSTGRES_PASSWORD: <%= ENV['DB_PASSWORD'] %>
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
   
