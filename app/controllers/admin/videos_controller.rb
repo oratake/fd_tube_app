@@ -1,5 +1,5 @@
 class Admin::VideosController < ApplicationController
-  before_action :if_not_admin
+  before_action :set_q, :if_not_admin
 
   def edit
     @video = Video.find(params[:id])
@@ -12,8 +12,7 @@ class Admin::VideosController < ApplicationController
     redirect_to admin_s3files_path
   end
 
-  def destroy
-  end
+  def destroy; end
 
   private
 

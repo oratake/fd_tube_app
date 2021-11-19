@@ -26,9 +26,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def destroy
     user = User.find(params[:id])
-    
+
     soft_delete(user)
-    flash[:alert] = "ユーザーを削除しました"
+    flash[:alert] = 'ユーザーを削除しました'
     yield resource if block_given?
     respond_with_navigational { redirect_to users_path }
   end

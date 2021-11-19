@@ -3,8 +3,8 @@ services:
   db:
     image: postgres:13
     environment:
-      POSTGRES_HOST_AUTH_METHOD: 'trust'
-      POSTGRES_PASSWORD: <%= ENV['DB_PASSWORD'] %> 
+      POSTGRES_USER: $DB_USERNAME
+      POSTGRES_PASSWORD: $DB_PASSWORD
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
   
@@ -20,6 +20,8 @@ services:
       - log-data:/fd_tube_app/log
     tty: true
     stdin_open: true
+    environment:
+      - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
     depends_on:
       - db
 
@@ -34,6 +36,11 @@ services:
       - 80:80
     tty: true
     stdin_open: true
+
+  selenium_chrome:
+    image: selenium/standalone-chrome-debug
+    logging:
+      driver: none
 
 volumes:
     public-data:

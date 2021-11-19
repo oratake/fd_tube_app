@@ -28,7 +28,6 @@
             <li><%= link_to "ユーザー管理画面", users_path, class: "dropdown-item" %></li>
           <% end %>
           <li><%= link_to "ホーム画面へ", videos_path, class: "dropdown-item" %></li>
-          <li><%= link_to "アカウント確認", "/users/#{current_user.id}", class: "dropdown-item" %></li>
           <li><%= link_to "アカウント変更", edit_user_registration_path, class: "dropdown-item" %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
         </ul>

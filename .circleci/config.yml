@@ -14,42 +14,44 @@ commands:
           pkg-manager: yarn
           cache-key: "yarn.lock"
 jobs:
-  rspec:
+  rspec_and_rubocop:
     docker:
       - image: circleci/ruby:2.7.3-node
       - image: circleci/postgres:11.12
         name: "db"
         environment:
-          POSTGRES_USER: postgres
+          POSTGRES_USER: $DB_USERNAME
           POSTGRES_DB: fd_tube_app_test
-          POSTGRES_PASSWORD: <%= ENV['DB_PASSWORD'] %>
+          POSTGRES_PASSWORD: $DB_PASSWORD
     environment:
       BUNDLE_JOBS: "4"
       BUNDLE_RETRY: "3"
       PGHOST: 127.0.0.1
-      PGUSER: postgres
-      PGPASSWORD: <%= ENV['DB_PASSWORD'] %>
+      PGUSER: $DB_USERNAME
+      PGPASSWORD: $DB_PASSWORD
       RAILS_ENV: test
     steps:
       - setup
-      # - run:
-      #     name: rails db:migrate
-      #     command: bundle exec rails db:migrate
       - run:
-          name: Database setup
+          name: rails db:migrate
+          command: bundle exec rails db:migrate
+      - run:
+          name: Setup Database
           command: bundle exec rails db:schema:load --trace
       - run:
-          name: Rspec
+          name: Start Rubocop
+          command: bundle exec rubocop
+      - run:
+          name: Start RSpec
           command: bundle exec rspec
-        
 workflows:
   version: 2
   nginx_deploy:
     jobs:
-      - rspec
+      - rspec_and_rubocop
       - aws-ecr/build-and-push-image:
           requires:
-            - rspec
+            - rspec_and_rubocop
           account-url: AWS_ECR_ACCOUNT_URL
           region: AWS_REGION
           aws-access-key-id: AWS_ACCESS_KEY_ID
@@ -70,10 +72,10 @@ workflows:
           container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
   rails_deploy:
     jobs:
-      - rspec
+      - rspec_and_rubocop
       - aws-ecr/build-and-push-image:
           requires:
-            - rspec
+            - rspec_and_rubocop
           account-url: AWS_ECR_ACCOUNT_URL
           region: AWS_REGION
           aws-access-key-id: AWS_ACCESS_KEY_ID
