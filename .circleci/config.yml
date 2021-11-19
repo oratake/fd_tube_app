@@ -17,38 +17,33 @@ commands:
 
 jobs:
   rspec:
-    machine:
-      image: circleci/classic:edge
+    docker:
+      - image: circleci/ruby:2.7.3-node
+      - image: circleci/postgres:11.12
+        name: "db"
+        environment:
+          POSTGRES_USER: $DB_USERNAME
+          POSTGRES_DB: fd_tube_app_test
+          POSTGRES_PASSWORD: $DB_PASSWORD
+    environment:
+      BUNDLE_JOBS: "4"
+      BUNDLE_RETRY: "3"
+      PGHOST: 127.0.0.1
+      PGUSER: $DB_USERNAME
+      PGPASSWORD: $DB_PASSWORD
+      RAILS_ENV: test
     steps:
-      - checkout
+      - setup
       - run:
-          name: Decode dotenv file
-          command: echo $ENV_FILE | base64 --decode > .env
-
+          name: rails db:migrate
+          command: bundle exec rails db:migrate
       - run:
-          name: Build containers
-          command: docker-compose -f docker-compose.dev.yml build
-
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
       - run:
-          name: Setup containers
-          command: docker-compose -f docker-compose.dev.yml up -d
-      
-      - run:
-          name: sleep 10second
-          command: sleep 10
-      
-      - run:
-          name: Setup DB
-          command: docker-compose -f docker-compose.dev.yml run rails_dev rails db:create db:migrate
-            
-      - run:
-          name: Start RSpec
-          command: docker-compose -f docker-compose.dev.yml run rails_dev bundle exec rspec
-
-      - run:
-          name: Down containers
-          command: docker-compose -f docker-compose.dev.yml down
-
+          name: Rspec
+          command: bundle exec rspec
+  
 workflows:
   version: 2
   nginx_deploy:
