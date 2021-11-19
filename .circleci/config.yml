@@ -15,21 +15,8 @@ commands:
           cache-key: "yarn.lock"
 jobs:
   rspec:
-    docker:
-      - image: circleci/ruby:2.7.3-node
-      - image: circleci/postgres:11.12
-        name: "db"
-        environment:
-          POSTGRES_USER: postgres
-          POSTGRES_DB: fd_tube_app_test
-          POSTGRES_PASSWORD: <%= ENV['DB_PASSWORD'] %>
-    environment:
-      BUNDLE_JOBS: "4"
-      BUNDLE_RETRY: "3"
-      PGHOST: 127.0.0.1
-      PGUSER: postgres
-      PGPASSWORD: <%= ENV['DB_PASSWORD'] %>
-      RAILS_ENV: test
+    machine:
+      image: circleci/classic:edge
     steps:
       - checkout
       - run:
