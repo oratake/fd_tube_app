@@ -1,4 +1,4 @@
-inherit_from: .rubocop_todo.yml
+# inherit_from: .rubocop_todo.yml
 
 require:
   - rubocop-rails
@@ -18,11 +18,6 @@ AllCops:
 
 Rails:
   Enabled: true
-
-Rails/FilePath:
-  Exclude:
-    - 'lib/tasks/dev.rake'
-    - 'spec/rails_helper.rb'
 
 Rails/FilePath:
   Enabled: false
