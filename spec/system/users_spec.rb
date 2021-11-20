@@ -54,7 +54,7 @@ RSpec.describe User, type: :system do
     end
 
     describe 'ゲストユーザーの場合' do
-      it 'ログインからログアウトができること' do
+      it '正しくログインできること' do
         visit new_user_session_path
         click_on 'ゲストユーザーでログイン'
         expect(page).to have_content 'ゲストユーザーでログインしました'
@@ -62,6 +62,7 @@ RSpec.describe User, type: :system do
         click_on 'ログアウト'
         expect(page).to have_content 'ログアウトしました'
       end
+
       it 'アカウント編集ページに遷移できないこと' do
         visit new_user_session_path
         click_on 'ゲストユーザーでログイン'

@@ -60,6 +60,10 @@ Style/StringConcatenation:
   Exclude:
     - 'app/controllers/users/registrations_controller.rb'
 
+# rspec
+RSpec/MultipleExpectations:
+  Max: 2
+
 RSpec/ExampleLength:
   Max: 8
 
