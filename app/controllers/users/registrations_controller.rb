@@ -35,9 +35,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def ensure_normal_user
-    if resource.email == 'guest@example.com'
-      redirect_to videos_path, alert: 'ゲストユーザーは削除できません'
-    end
+    redirect_to videos_path, alert: 'ゲストユーザーは削除できません' if resource.email == 'guest@example.com'
   end
 
   private
