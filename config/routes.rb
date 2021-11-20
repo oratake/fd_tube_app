@@ -1,25 +1,22 @@
 Rails.application.routes.draw do
   # root to: "home#top"
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
+  devise_scope :user do
+    root 'users/sessions#new'
+    get '/users/sign_in', to: 'users/sessions#new'
+    post '/users/sign_in', to: 'users/sessions#new'
+    post '/users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+    delete 'users/sign_out', to: 'devise/sessions#destroy'
+    delete 'users/:id', to: 'users/registrations#destroy'
+  end
   resources :users, only: %i[index show]
   resources :videos, only: %i[index show] do
     collection do
       get 'search'
     end
   end
-
-  devise_scope :user do
-    root 'users/sessions#new'
-    post '/users/guest_sign_in', to: 'users/sessions#guest_sign_in'
-    delete 'users/sign_out', to: 'devise/sessions#destroy'
-  end
-
-  devise_scope :users do
-    delete 'users/:id', to: 'users/registrations#destroy'
-  end
-
-  devise_for :users, controllers: {
-    registrations: 'users/registrations'
-  }
 
   namespace :admin do
     get '/videos/:id', to: 'videos#edit'

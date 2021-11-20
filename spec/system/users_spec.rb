@@ -52,5 +52,24 @@ RSpec.describe User, type: :system do
         end
       end
     end
+
+    describe 'ゲストユーザーの場合' do
+      it 'ログインからログアウトができること' do
+        visit new_user_session_path
+        click_on 'ゲストユーザーでログイン'
+        expect(page).to have_content 'ゲストユーザーでログインしました'
+        find('.header-icon-name').click
+        click_on 'ログアウト'
+        expect(page).to have_content 'ログアウトしました'
+      end
+      it 'アカウント編集ページに遷移できないこと' do
+        visit new_user_session_path
+        click_on 'ゲストユーザーでログイン'
+        find('.header-icon-name').click
+        within('.dropdown-menu') do
+          expect(page).not_to have_content 'アカウント情報を変更'
+        end
+      end
+    end
   end
 end

@@ -6,7 +6,7 @@ class Users::SessionsController < Devise::SessionsController
   def guest_sign_in
     user = User.guest
     sign_in user
-    redirect_to videos_path
+    redirect_to videos_path, notice: 'ゲストユーザーでログインしました'
   end
 
   # GET /resource/sign_in
