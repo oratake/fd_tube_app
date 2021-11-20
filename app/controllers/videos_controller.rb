@@ -10,6 +10,10 @@ class VideosController < ApplicationController
     @s3file = S3file.includes(:video).find(params[:id])
     @s3file_name = @s3file.file_name.split('.').first
     @user = current_user
+    @comments = @s3file.video.comments.order('created_at DESC')
+    # = @comments
+
+    # binding.pry
   end
 
   def search

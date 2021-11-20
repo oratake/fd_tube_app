@@ -7,7 +7,7 @@
         </video-js>
       </div>
       <div class="video-info-inner_show">
-        <div class="video-info-title border-bottom">
+        <div class="video-info-title border-bottom pt-2">
           <h5><%= @s3file.video.title %></h4>
           <div class="video-info-update_at"><%= @s3file.video.updated_at.to_s(:datetime_jp) %></div>
         </div>
@@ -30,17 +30,27 @@
           </div>
         </form>
       <% end %>
-      <ul id="comments_index">
-        <li v-for="comment in comments">
-          <div class="col-sm-3">
-            <%= '{{ comment.user_name }}' %>
+      <div class="row">
+        <div class="comment-icon col-md-2">
+          <% @comments.each do |comment| %>
+            <div class="header-icon-inner">
+              <div class="header-icon-name">
+                <%= comment.user.first_name %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div id="comments_index" class="col-md-10">
+          <div v-for="comment in comments">
+            <div>
+              <%= '{{ comment.user_id }}' %>
+            </div>
+            <div>
+              <%= '{{ comment.context }}' %>
+            </div>
           </div>
-          <div class="col-sm-6">
-            <%= '{{ comment.context }}' %>
-          </div>
-        </li>
-      </ul>
-
+        </div>
+      </div>
     </div>
   </div>
 </div>
