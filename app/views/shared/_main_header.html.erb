@@ -27,8 +27,10 @@
             <li><%= link_to "動画を投稿する", "/admin/s3files/new", class: "dropdown-item" %></li>
             <li><%= link_to "ユーザー管理画面", users_path, class: "dropdown-item" %></li>
           <% end %>
-          <li><%= link_to "ホーム画面へ", videos_path, class: "dropdown-item" %></li>
-          <li><%= link_to "アカウント変更", edit_user_registration_path, class: "dropdown-item" %></li>
+          <li><%= link_to "動画一覧ページへ", videos_path, class: "dropdown-item" %></li>
+            <% if current_user.email? == 'gust@example.com' %>
+              <li><%= link_to "アカウント情報を変更", edit_user_registration_path, class: "dropdown-item" %></li>
+            <% end %>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
         </ul>
 
