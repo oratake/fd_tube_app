@@ -10,9 +10,13 @@ Rails.application.routes.draw do
   devise_scope :user do
     root 'users/sessions#new'
     post '/users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+    delete 'users/sign_out', to: 'devise/sessions#destroy'
+  end
+  
+  devise_scope :users do
     delete 'users/:id', to: 'users/registrations#destroy'
   end
-
+  
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
