@@ -3,6 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  before_action :ensure_normal_user, only: :destroy
 
   # GET /resource/sign_up
   # def new
@@ -31,6 +32,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     flash[:alert] = 'ユーザーを削除しました'
     yield resource if block_given?
     respond_with_navigational { redirect_to users_path }
+  end
+
+  def ensure_normal_user
+    if resource.email == 'guest@example.com'
+      redirect_to videos_path, alert: 'ゲストユーザーは削除できません'
+    end
   end
 
   private
