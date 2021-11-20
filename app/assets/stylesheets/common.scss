@@ -1,6 +1,16 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+a {
+  text-decoration: none;
+}
+a:link {
+  color: black;
+}
+a:visited {
+  color: black;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -9,7 +19,7 @@ header {
 }
 
 .header-logo {
-  color: #fff;
+  color: #fff !important;
   font-size: 36px;
   text-shadow: 1px 2px 3px #808080; 
 }
