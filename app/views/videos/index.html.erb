@@ -1,7 +1,7 @@
 <div class="container-fluid video–container">
   <div class="row">
     <% @s3files.each do |s3file| %>
-      <div class="video-box_index col-md-4 p-4">
+      <div class="video-box_index col-md-3 p-4">
         <%= link_to "/videos/#{s3file.id}", controller: "show" do %>
           <div class="thumbnail-innner">
             <%= image_tag "https://#{ENV['AWS_S3_OUTPUT_BUCKET_NAME']}.s3.ap-northeast-1.amazonaws.com/thumbnail/#{s3file.file_name.split(".").first}_pic.0000000.jpg" %>
