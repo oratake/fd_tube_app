@@ -6,7 +6,7 @@
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <div class="form-field">
         <%= f.label :user_name, "ユーザーネーム(半角英数字)" %> <br />
-        <%= f.text_field :user_name, class: "form-control form-box-width" %>
+        <%= f.text_field :user_name, autofocus: true, class: "form-control form-box-width" %>
       </div>
       <div class="form-field">
         <%= f.label :first_name, "苗字" %> <br />
@@ -18,7 +18,7 @@
       </div>
       <div class="form-field">
         <%= f.label :email, "メールアドレス" %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-box-width" %>
+        <%= f.email_field :email, autocomplete: "email", class: "form-control form-box-width" %>
       </div>
       <div class="form-field">
         <%= f.label :password, "パスワード" %>
