@@ -35,13 +35,14 @@ header {
 	-o-border-radius: 50px;
 	-ms-border-radius: 50px; 
 	border-radius: 50px;
+  text-align: center;
+  line-height: 50px;
 
   & .header-icon-name {
     color: white;
     font-weight: 600;
-    padding-top: 12px;
     white-space: nowrap;
-    padding: 12px 0 0 9px;
+    padding: 0 0 0 0;
   }
 
   & .btn {

@@ -41,12 +41,11 @@ class Admin::S3filesController < ApplicationController
   end
 
   def destroy
-    s3file = S3file.find(params[:id]) # テーブルからデータを取り出す
-    key = s3file.key # キー（ファイル名）取得
-
-    bucket = @s3.bucket(@input_bucketname) # バケット指定
-    object = bucket.object(key) # キー指定
-    object.delete # オブジェクト（ファイル）削除
+    s3file = S3file.find(params[:id])
+    key = s3file.key
+    bucket = @s3.bucket(@input_bucketname)
+    object = bucket.object(key)
+    object.delete
 
     s3file.destroy
     redirect_to admin_s3files_path, flash: { alert: '削除しました' }

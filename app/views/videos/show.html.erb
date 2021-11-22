@@ -7,7 +7,7 @@
         </video-js>
       </div>
       <div class="video-info-inner_show">
-        <div class="video-info-title border-bottom">
+        <div class="video-info-title border-bottom pt-2">
           <h5><%= @s3file.video.title %></h4>
           <div class="video-info-update_at"><%= @s3file.video.updated_at.to_s(:datetime_jp) %></div>
         </div>
@@ -15,33 +15,7 @@
         <div class="video-info-description"><%= @s3file.video.description %></div>
       </div>
     </div>
-    <div class="user-comment-box col-md-5">
-      <% if user_signed_in? %>
-        <form class="form-inline" id="comment">
-          <div class="row">
-            <div class="form-group col-sm-9">
-              <input name="comment[context]" type="textarea" v-model="context" class="search-box-form" size="28" placeholder="コメントを入力..." />
-              <input name="comment[user_id]" type="hidden" v-model="user_id" value="<%= @user.id %>" />
-              <input name="comment[video_id]" type="hidden" v-model="video_id" value="<%= @s3file.video.id %>" />
-            </div>
-            <div class="col-sm-3">
-              <button v-on:click="comment_create" class="btn btn-primary">送信</button>
-            </div>
-          </div>
-        </form>
-      <% end %>
-      <ul id="comments_index">
-        <li v-for="comment in comments">
-          <div class="col-sm-3">
-            <%= '{{ comment.user_name }}' %>
-          </div>
-          <div class="col-sm-6">
-            <%= '{{ comment.context }}' %>
-          </div>
-        </li>
-      </ul>
-
-    </div>
+    <%= render partial: "comment_form", locals: { user: @user, s3file: @s3file, comments: @comments } %>
   </div>
 </div>
 <%= javascript_pack_tag 'comments_index' %>
