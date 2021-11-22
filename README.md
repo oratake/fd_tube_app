@@ -1,5 +1,4 @@
 ## アプリの説明
----
 
 ### アプリ名
 『FD-TUBE』
@@ -13,7 +12,6 @@ http://ecs-fd-tube-app-alb-242793914.ap-northeast-1.elb.amazonaws.com/
 <br>
 
 ## 使用技術
----
 - Ruby 2.7.3
 - Ruby on Rails 6.1.4
 - Vue.js 2.6.14
@@ -30,17 +28,16 @@ http://ecs-fd-tube-app-alb-242793914.ap-northeast-1.elb.amazonaws.com/
     - CloudFront
 - Docker/Docker-compose
 - CircleCI
-- RSpec
+- RSpec 3.10.1
+- Rubocop 1.22.3
 
 <br>
 
 ## インフラ構成図
----
 <br>
 
 ![infra_pic](https://dl.dropboxusercontent.com/s/wad853fzpv0h2dh/%20%28New%29PF%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9%E6%A7%8B%E9%80%A0%E5%9B%B3.drawio.png?dl=0)
 
- https://www.dropbox.com/?dl=0
 <br>
 
 ### CI/CDについて
@@ -62,7 +59,6 @@ CircleCIを用いて以下の２点を自動化しています。
 <br>
 
 ## 機能一覧
----
 - ログイン機能（gem:device）
 - 動画投稿機能（管理者のみ）
 - 動画視聴（ストリーミング再生）
