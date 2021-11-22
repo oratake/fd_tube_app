@@ -15,7 +15,7 @@
             <div class="video-info-inner_index col-10 pt-2">
               <h5 class="video-info-title"><%= s3file.video.title %></h5>
               <div><%= s3file.video.description %></div>
-              <div><%= s3file.video.updated_at %></div>
+              <div><%= s3file.video.updated_at.to_s(:datetime_jp) %></div>
             </div>
         </div>
         <% end %>
