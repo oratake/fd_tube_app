@@ -15,7 +15,7 @@
             <div class="video-info-inner_index col-10 pt-2">
               <h4><%= result.title %></h4>
               <div><%= result.description %></div>
-              <div><%= result.updated_at %></div>
+              <div><%= result.updated_at.to_s(:datetime_jp) %></div>
             </div>
         </div>
         <% end %>

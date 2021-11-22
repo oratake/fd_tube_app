@@ -6,11 +6,10 @@ RSpec.describe User, type: :system do
 
   describe 'Userシステム' do
     describe 'ユーザー未登録の場合' do
-      it 'フォームが正常な場合新規登録できること' do
+      it '新規登録機能が有効であること' do
         visit new_user_registration_path
         fill_in 'メールアドレス', with: 'hogehoge@example.com'
         fill_in 'パスワード', with: 'password'
-        fill_in 'パスワード（確認用）', with: 'password'
         click_button '登録'
         expect(page).to have_content 'アカウント登録が完了しました'
       end
@@ -27,7 +26,6 @@ RSpec.describe User, type: :system do
         visit new_user_registration_path
         fill_in 'メールアドレス', with: user.email
         fill_in 'パスワード', with: 'password'
-        fill_in 'パスワード（確認用）', with: 'password'
         click_button '登録'
         expect(page).to have_content 'Eメールはすでに存在します'
       end

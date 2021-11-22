@@ -36,7 +36,7 @@ http://ecs-fd-tube-app-alb-242793914.ap-northeast-1.elb.amazonaws.com/
 ## インフラ構成図
 <br>
 
-![infra_pic](https://dl.dropboxusercontent.com/s/zh87obmaivy61fh/PF%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9%E6%A7%8B%E9%80%A0%E5%9B%B3.drawio%20%282%29.png)
+![infra_pic](https://dl.dropboxusercontent.com/s/wad853fzpv0h2dh/%20%28New%29PF%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9%E6%A7%8B%E9%80%A0%E5%9B%B3.drawio.png?dl=0)
 
 <br>
 
