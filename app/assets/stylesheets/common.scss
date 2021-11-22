@@ -14,14 +14,18 @@ a:visited {
 header {
   display: flex;
   justify-content: space-between;
-  padding: 10px 14px;
+  padding: 0px 14px;
   align-items: center;
 }
 
-.header-logo {
-  color: #fff !important;
-  font-size: 36px;
-  text-shadow: 1px 2px 3px #808080; 
+.header-logo_inner {
+  display: block;
+	font-size: 0;
+
+  & img {
+    width: 140px;
+	  height: 65px;
+  }
 }
 
 .header-icon-inner {
