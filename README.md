@@ -28,7 +28,8 @@ http://ecs-fd-tube-app-alb-242793914.ap-northeast-1.elb.amazonaws.com/
     - CloudFront
 - Docker/Docker-compose
 - CircleCI
-- RSpec
+- RSpec 3.10.1
+- Rubocop 1.22.3
 
 <br>
 
