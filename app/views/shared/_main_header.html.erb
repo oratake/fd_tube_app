@@ -1,4 +1,4 @@
-<header class="header border-bottom">
+<header class="header d-md-flex justify-content-between border-bottom">
   <div class="header-left">
     <div class="header-logo_inner">
       <h1><%= link_to image_tag("FD_log.png"), root_path, class: "header-logo" %></h1>
@@ -9,7 +9,7 @@
     <div class="search-box">
       <%= search_form_for @q, url: search_videos_path do |f| %>
         <% f.label :title_cont %>
-        <%= f.search_field :title_cont, size: "45px", class: "search-box-form" %>
+        <%= f.search_field :title_cont, size: "", class: "search-box-form" %>
         <%= f.submit "検索", class: 'btn btn-outline-secondary' %>
       <% end %>
     </div>
