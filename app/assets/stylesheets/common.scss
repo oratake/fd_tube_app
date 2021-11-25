@@ -11,9 +11,7 @@ a:visited {
   color: black;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
+.header-inner {
   padding: 0px 14px;
   align-items: center;
 }
@@ -51,6 +49,12 @@ header {
 
   & .btn {
     box-shadow: none !important;
+  }
+}
+
+.search-box {
+  & .btn {
+    vertical-align: baseline;
   }
 }
 

@@ -1,42 +1,55 @@
 <header class="header border-bottom">
-  <div class="header-left">
-    <div class="header-logo_inner">
-      <h1><%= link_to image_tag("FD_log.png"), root_path, class: "header-logo" %></h1>
+  <div class="header-inner d-flex justify-content-between">
+    <div class="header-left">
+      <div class="header-logo_inner">
+        <h1><%= link_to image_tag("FD_log.png"), root_path, class: "header-logo" %></h1>
+      </div>
     </div>
+    <% if user_signed_in? %>
+    <div class="header-center d-none d-sm-block">
+      <div class="search-box align-self-center">
+        <%= search_form_for @q, url: search_videos_path do |f| %>
+          <% f.label :title_cont %>
+          <%= f.search_field :title_cont, size: "35px", placeholder: "キーワードを入力", class: "search-box-form" %>
+          <%= f.submit "検索", class: 'btn btn-outline-secondary' %>
+        <% end %>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="dropdown header-icon-inner">
+        <button class="btn header-icon-name" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          <%= current_user.first_name %>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <% if current_user.admin? %>
+            <li><%= link_to "投稿した動画一覧", admin_s3files_path, class: "dropdown-item" %></li>
+            <li><%= link_to "動画を投稿する", "/admin/s3files/new", class: "dropdown-item" %></li>
+            <li><%= link_to "ユーザー管理画面", users_path, class: "dropdown-item" %></li>
+          <% end %>
+          <li><%= link_to "動画一覧ページへ", videos_path, class: "dropdown-item" %></li>
+            <% if current_user.email? == 'gust@example.com' %>
+              <li><%= link_to "アカウント情報を変更", edit_user_registration_path, class: "dropdown-item" %></li>
+            <% end %>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+        </ul>
+      </div>
+    </div>
+    <% else %>
+    <div class="header-right">
+      <%= link_to "ログイン", new_user_session_path, class: 'btn btn-outline-secondary' %>
+      <%= link_to "新規登録", new_user_registration_path, class: 'btn btn-outline-secondary' %>
+    </div>
+    <% end %>
   </div>
   <% if user_signed_in? %>
-  <div class="header-center">
-    <div class="search-box">
-      <%= search_form_for @q, url: search_videos_path do |f| %>
-        <% f.label :title_cont %>
-        <%= f.search_field :title_cont, size: "45px", class: "search-box-form" %>
-        <%= f.submit "検索", class: 'btn btn-outline-secondary' %>
-      <% end %>
-    </div>
-  </div>
-  <div class="header-right">
-    <div class="dropdown header-icon-inner">
-      <button class="btn header-icon-name" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-        <%= current_user.first_name %>
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <% if current_user.admin? %>
-          <li><%= link_to "投稿した動画一覧", admin_s3files_path, class: "dropdown-item" %></li>
-          <li><%= link_to "動画を投稿する", "/admin/s3files/new", class: "dropdown-item" %></li>
-          <li><%= link_to "ユーザー管理画面", users_path, class: "dropdown-item" %></li>
+    <div class="header-center d-flex d-sm-none justify-content-center">
+      <div class="mobile search-box">
+        <%= search_form_for @q, url: search_videos_path do |f| %>
+          <% f.label :title_cont %>
+          <%= f.search_field :title_cont, size: "", placeholder: "キーワードを入力", class: "search-box-form" %>
+          <%= f.submit "検索", class: 'btn btn-outline-secondary' %>
         <% end %>
-        <li><%= link_to "動画一覧ページへ", videos_path, class: "dropdown-item" %></li>
-          <% if current_user.email? == 'gust@example.com' %>
-            <li><%= link_to "アカウント情報を変更", edit_user_registration_path, class: "dropdown-item" %></li>
-          <% end %>
-        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
-      </ul>
+      </div>
     </div>
-  </div>
-  <% else %>
-  <div class="header-right">
-    <%= link_to "ログイン", new_user_session_path, class: 'btn btn-outline-secondary' %>
-    <%= link_to "新規登録", new_user_registration_path, class: 'btn btn-outline-secondary' %>
-  </div>
   <% end %>
 </header>
