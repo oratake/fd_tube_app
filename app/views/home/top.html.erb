@@ -1,3 +1,13 @@
-<h1>Home#top</h1>
-<p>Find me in app/views/home/top.html.erb</p>
-<%= javascript_pack_tag 'hello_vue' %>
+<section id="top" class="top">
+  <div class="top-bg">
+    <div class="container position-absolute top-50 start-50 translate-middle">
+      <h1 class="top-title">FD-Tube</h1>
+      <p class="top-subtitle">災害現場映像の配信・共有アプリケーション</p>
+    </div>
+  </div>
+  <div class="container pb-5">
+    <%= render 'section_1' %>
+    <%= render 'section_2' %>
+    <%= render 'section_3' %>
+  </div>
+</section>

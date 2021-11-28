@@ -1,0 +1,64 @@
+// Place all the styles related to the s3files controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+#top {
+  background-color: #f2f0f0;
+}
+
+.top {
+  font-family: 'Merriweather', serif;
+}
+
+.top-bg {
+  background-image: url('top-bg-pic.jpg');
+  height: 80vh;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:cover;
+  // opacity: 0.7
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 75px;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 80vh;
+    background: rgba(109, 109, 109, 0.4);
+  }
+}
+
+.top-title {
+  font-size: 4rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.top-subtitle {
+  font-size: 1.6rem;
+  color: #fff;
+}
+
+.section-container {
+  background-color: #fff;
+
+  & a {
+    text-decoration: underline;
+  }
+}
+
+.section-title {
+  font-size: 2rem;
+  display:inline-block;
+  border-bottom: solid;
+  border-width: 5px;
+  border-color: #EF191A;
+}
+
+.section-text {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
