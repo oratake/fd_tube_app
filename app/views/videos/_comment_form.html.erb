@@ -27,7 +27,7 @@
     <% end %>
   </div>
   <div id="comments_index">
-    <div v-for="comment in comments" class="pt-2">
+    <div v-for="comment in comments" class="pt-3">
       <div class="row">
         <div class="comment-icon col-2">
           <div class="header-icon-inner">
@@ -40,7 +40,7 @@
           <div class="comment-username">
             <%= '名前:  {{ comment.first_name }} {{ comment.last_name }}' %>
           </div>
-          <div class="comment-context">
+          <div class="comment-context pt-1">
             <%= '{{ comment.context }}' %>
           </div>
         </div>
