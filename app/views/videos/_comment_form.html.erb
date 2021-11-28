@@ -41,7 +41,7 @@
     <div id="comments_index" class="col-10">
       <div v-for="comment in comments">
         <div class="pt-3">
-          <%= 'user_id:  {{ comment.user_id }}' %>
+          <%= '名前:  {{ comment.first_name }} {{ comment.last_name }}' %>
         </div>
         <div>
           <%= '{{ comment.context }}' %>
