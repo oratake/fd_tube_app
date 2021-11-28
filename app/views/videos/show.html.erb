@@ -15,7 +15,7 @@
         <div class="video-info-description"><%= @s3file.video.description %></div>
       </div>
     </div>
-    <%= render partial: "comment_form", locals: { user: @user, s3file: @s3file, comments: @comments } %>
+    <%= render partial: "comment_form", locals: { user: @user, s3file: @s3file } %>
   </div>
 </div>
 <%= javascript_pack_tag 'comments_index' %>

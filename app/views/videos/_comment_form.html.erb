@@ -26,25 +26,23 @@
         </div>
     <% end %>
   </div>
-  <div class="row">
-    <div class="comment-icon col-2">
-      <% comments.each do |comment| %>
-        <div class="comment-icon-padding pt-3">
+  <div id="comments_index">
+    <div v-for="comment in comments" class="pt-2">
+      <div class="row">
+        <div class="comment-icon col-2">
           <div class="header-icon-inner">
             <div class="header-icon-name">
-              <%= comment.user.first_name %>
+              <%= '{{ comment.first_name }}' %>
             </div>
           </div>
         </div>
-      <% end %>
-    </div>
-    <div id="comments_index" class="col-10">
-      <div v-for="comment in comments">
-        <div class="pt-3">
-          <%= '名前:  {{ comment.first_name }} {{ comment.last_name }}' %>
-        </div>
-        <div>
-          <%= '{{ comment.context }}' %>
+        <div class="comment-text col-10">
+          <div class="comment-username">
+            <%= '名前:  {{ comment.first_name }} {{ comment.last_name }}' %>
+          </div>
+          <div class="comment-context">
+            <%= '{{ comment.context }}' %>
+          </div>
         </div>
       </div>
     </div>
